@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:09:03.807109+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:09:11.979281+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "1AqcYB4ADgCoM/XyCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtMethod:Collection>>#gtScatter2DOn:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:08:29.199099+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:08:31.301957+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "M/eLXh4ADgCoLSuGCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Most likely nothing shows up because **your nodes have no position and your `shape:` block is returning the wrong object** (a geometry instead of a `BlElement`).\n\nLet’s both **fix it** and **show you how to debug Mondrian views**.\n\n---\n\n## 1. A working version of `gtScatter2DOn:`\n\nAssuming:\n\n* `self` is a `Collection` of **Points** (`10@20`, `30@40`, …)\n* You want a small dot for each point in input space\n\nThen:\n\n```smalltalk\nCollection>>gtScatter2DOn: aView\n    <gtView>\n    ^ aView mondrian\n        title: '2D Input Space';\n        painting: [ :m |\n            m nodes\n                shape: [ :p | \n                    BlElement new\n                        size: 4 @ 4;\n                        geometry: BlEllipseGeometry new;\n                        background: Color blue;\n                        yourself ];\n                translate: [ :p | p ];  \"Position = the Point itself\"\n                with: self ]\n```\n\nKey differences vs your version:\n\n1. **`yourself` at the end of the shape block**\n\n   * `geometry:` usually returns the geometry, **not** the element, so without `yourself` the shape block returns a `BlEllipseGeometry` instead of a `BlElement`.\n   * Mondrian expects the shape block to return a `BlElement`.\n   * `yourself` ensures the last returned object is the configured `BlElement`.\n\n2. **`translate:` (position)**\n\n   * Without any layout or translation, everything is at `(0@0)` and may be outside the visible region or all on top of each other.\n   * `translate: [:p | p]` uses the point as its own position → classic 2D scatter.\n\n3. Using `with: self` is fine if `self` is the collection you want to plot.\n\nTry this with something like:\n\n```smalltalk\n{ 10@10. 50@20. 30@80 } inspect\n```\n\nThen choose the **“2D Input Space”** view in the inspector.\n\n---\n\n## 2. How to debug Mondrian views when nothing shows\n\nHere’s a practical checklist:\n\n### (a) Check the view is actually invoked\n\nTemporarily add:\n\n```smalltalk\npainting: [ :m |\n    Transcript show: 'gtScatter2DOn painting'; cr.\n    ...\n]\n```\n\nIf you don’t see this in the Transcript, either:\n\n* the method isn’t being called (wrong class / selector), or\n* you’re looking at a different view in the inspector.\n\n### (b) Check your collection isn’t empty\n\nInside `painting:`:\n\n```smalltalk\nself isEmpty ifTrue: [\n    Transcript show: 'Collection is empty'; cr.\n].\n```\n\n### (c) Inspect what the shape block returns\n\nAdd a tiny self-check:\n\n```smalltalk\nm nodes\n    shape: [ :p | \n        | e |\n        e := BlElement new\n                size: 4 @ 4;\n                geometry: BlEllipseGeometry new;\n                background: Color blue;\n                yourself.\n        (e isKindOf: BlElement)\n            ifFalse: [ self error: 'Shape does not return a BlElement' ].\n        e ];\n    translate: [ :p | p ];\n    with: self\n```\n\nIf that error fires, you know the shape contract is wrong.\n\n### (d) Verify positions\n\nIf your elements later are **not** Points but some objects, decide how to get coordinates:\n\n```smalltalk\ntranslate: [ :obj | obj position ]  \"if obj has #position\"\n```\n\nOr:\n\n```smalltalk\ntranslate: [ :obj | obj x @ obj y ]\n```\n\nIf you don’t set either `translate:` (or a layout), nodes may all pile up at the origin.\n\n### (e) Try with a tiny, known collection\n\nBefore you use your full SOM input set, try:\n\n```smalltalk\n{ 10@10. 20@30. 40@10 } inspect\n```\n\nIf that works, the Mondrian code is fine and any remaining problem is in your SOM data.\n\n---\n\nIf you paste the corrected `Collection>>gtScatter2DOn:` above, you should see a small blue-dot scatter plot. From there we can refine it into a dedicated `KohonenSom>>gtWeights2DOn:` that uses `weightsAsPoints2D`.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:08:51.392072+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:08:51.392072+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "A working version of gtScatter2DOn:"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "68f48b5e-1e00-0e00-a82c-d3110b0f948e"
+	}
+}

@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:23:53.626394+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:23:55.402936+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "h5ullR4ADgCo4NkhCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Your GT image is **newer than the documentation** but **older than the API I used**.\nSo:\n\n* `translate:` → **does not exist** (removed long ago)\n* `layout custom` → **does not exist** (introduced later)\n* Your version expects **explicit coordinate layouts**, not builders.\n\nThe *correct API for your version* is:\n\n# ✅ Use `m layout: (GtMondrianExplicitLayout new nodes:positionsBlock)`\n\nWhere `positionsBlock` maps the model (a Point) → a coordinate.\n\nThis works on *all* GT versions that still have `GtMondrianNodeBuilder` / `GtMondrianLayoutBuilder`.\n\n---\n\n# ✔️ Corrected `gtScatter2DOn:` (compatible with your GT)\n\n```smalltalk\nCollection>>gtScatter2DOn: aView\n    <gtView>\n    ^ aView mondrian\n        title: '2D Input Space';\n        painting: [ :m |\n\n            \"1. Each node is a small dot\"\n            m nodes\n                shape: [ :p |\n                    BlElement new\n                        size: 4 @ 4;\n                        geometry: BlEllipseGeometry new;\n                        background: Color blue;\n                        yourself ];\n                with: self.\n\n            \"2. Explicit coordinate layout\"\n            m layout:\n                (GtMondrianExplicitLayout new\n                    nodes: [ :p | p ]) ]\n```\n\nThis API **exists** on your GT version:\n\n* `GtMondrianExplicitLayout`\n* `nodes:` → block returning a `Point` = the position\n\nYou can verify with:\n\n```smalltalk\nGtMondrianExplicitLayout new inspect\n```\n\n---\n\n# 👍 What this does\n\n* You give Mondrian a “shape” for each item.\n* You give it an explicit layout: `nodes:` returns a pixel coordinate.\n* A `(10@10)` point appears at screen position `(10@10)`.\n* A `(50@20)` appears at `(50@20)`.\n* And so on.\n\n---\n\n# Test it\n\nInspect:\n\n```smalltalk\n{ 10@10 . 50@20 . 30@80 } inspect\n```\n\nChoose **2D Input Space**.\n\nYou should now see **three tiny blue dots**, properly positioned.\n\n---\n\n# If you want scaling, axes, labels, or zoom constraints\n\nI can add:\n\n* automatic scaling to bounding box\n* x/y axes\n* tick marks\n* node hover labels\n* grid lines\n\nJust tell me what you want next.\n\n---\n\nWould you like **KohonenSom>>gtWeights2DOn:** built on top of this working scatter?\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:24:20.172691+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:24:20.172691+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Use m layout: (GtMondrianExplicitLayout new nodes:positionsBlock)"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "8791a595-1e00-0e00-a8df-fd4d0b0f948e"
+	}
+}

@@ -1,0 +1,522 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:01:12.837918+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:01:12.837918+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "CJmJRB4ADgCneVRgCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Below is a **clean, concrete learning-path** inside Glamorous Toolkit that takes a newcomer from:\n\n**Plotter → understanding GtPlotterDataGroup → building simple 2D point views → → GT views for KohonenSom (#gtWeightsOn:, #gtWeights2DOn:) → → visualizing input space and SOM weights.**\n\nNo theory detours, no extra distractions.\nEverything is phrased so you can directly turn it into GT-Curriculum lessons (Newcomer profile). [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691a3b1f-5fc8-8331-85b0-80064b596093)\n\n---\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:04:35.389964+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:04:35.389964+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sUycUB4ADgCnx5tgCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# **Learning Path: From GT Plotter to KohonenSom Visualizations**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:04:46.178908+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:05:26.52941+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "5OxAUR4ADgCn2MSWCw+Ujg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Before you can visualize SOMs (weights, input space, neighborhood evolution), you must understand **GT’s Plotter** because:\n\n* Plotter = GT’s “visual grammar” for charts.\n* KohonenSom visualizations are nothing but **data groups + mappings** (weights) sent to Plotter builders (scatter plots, bar charts, timelines, line charts).\n* To visualize SOM weights in 2D, you are literally doing:\n  **“Plotter scatter of {each weight vector projected to 2D}.”**\n\nThis is structurally identical to {{gtMethod:GtPlotterHorizontalBarChartExamples>>#sequoiaSearchResults}}.\n"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:04:39.465533+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:04:39.465533+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "43zaUB4ADgCnzh7ACw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## **0. Starting Point: Why Plotter?**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:23.140182+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:23.140182+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "l1K6SB4ADgCno9GyCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# **1. Intro Unit — Plotter Basics (Visualiser Path Part I)**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:02:14.088634+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:02:25.24111+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "sTUwSB4ADgCnnKLICw+Ujg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Goal: understand that *data becomes a DataGroup*, and a chart binds properties to visuals.\n\nKey notions:\n\n* **GtPlotterDataGroup**\n* **labelled:**\n* **background:**\n* **builder objects** (for bar / timeline / scatter)\n\nExample activity:\n\n```smalltalk\nGtPlotterExamples new simpleBarChart\n```\n"
+						},
+						{
+							"__type" : "pharoSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:02:41.399761+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:02:43.270625+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "DvjQSR4ADgCnstquCw+Ujg=="
+							},
+							"code" : "GtPlotterExamples new simpleBarChart"
+						},
+						{
+							"__type" : "exampleSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:03:54.372239+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T22:03:54.372239+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "y3AqTh4ADgCnv6GfCw+Ujg=="
+							},
+							"exampleSelector" : "sequoiaSearchResults",
+							"previewHeight" : 200,
+							"previewShowSelector" : "gtViewsFor:",
+							"exampleBehaviorName" : "GtPlotterHorizontalBarChartExamples",
+							"codeExpanded" : true,
+							"previewExpanded" : false,
+							"noCode" : false
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:25.233621+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:25.233621+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "XUXaSB4ADgCnqrxaCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### **Lesson 1 – Your First Plotter (bar chart)**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:04.795007+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:14.100416+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "v2aiRx4ADgCnlUrwCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "### **Lesson 2 – How Plotter interprets a DataGroup**\n\nUse `theData := GtPlotterDataGroup new values: #(...).`\n\nExplain the equivalent of:\n\n```smalltalk\ntheData := theData labelled: [:each | each at: #species ].\ntheData := theData background: [:each | ... ].\n```\n\nLearning outcome:\n**Plotter = declarative mapping:**\n\n* *labels*\n* *colors/backgrounds*\n* *scales*\n* *value-to-visual mapping*\n\n### **Lesson 3 – Understanding a scale**\n\nIntroduce:\n\n```smalltalk\nGtPlotterLinearScale new domainFrom: 0 to: aMaxPages.\n```\n\nWhy scales matter:\nSOM weights will require *scales* too (for x,y).\n\n---\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:01:26.043388+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:02:04.813766+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "hxNTRR4ADgCnh/XDCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# **2. Plotter for Points (Visualiser Path Part II)**\n\nNow move toward what a SOM needs: **points in 2D space**.\n\n### **Lesson 4 – Scatter plot from simple 2D points**\n\nDefine a GT view that plots:\n\n```smalltalk\npoints := { #(1 1). #(2 4). #(3 9). #(4 16) }.\n```\n\nThen:\n\n```smalltalk\nGtPlotterScatterPlot new\n    x: [:p | p first];\n    y: [:p | p second];\n    with: (GtPlotterDataGroup new values: points).\n```\n\n### **Lesson 5 – Coloring points**\n\n```smalltalk\ntheData := theData background: [:p |\n    p second > 10 ifTrue: Color red ifFalse: Color gray].\n```\n\n### **Why these lessons?**\n\nBecause a Kohonen SOM **weight vector** is just a point in n-D; to display it in 2D you do two things:\n\n1. **Choose a projection** (take first two dims, PCA, etc).\n2. **Plot points with a Plotter scatter plot.**\n\nExactly the same pattern.\n\n---\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:01:37.216611+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:01:37.216611+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "bZb9RR4ADgCnjnuBCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# **3. Primer on Kohonen SOM Data for Visualization**\n\n### **Lesson 6 – What is `weightsAsPoints2D`?**\n\nYour question: *“Explain what we see in weightsAsPoints2D.”*\n\nAnswer (to be used in the lesson):\n\n**`weightsAsPoints2D` is the 2-dimensional embedding of each neuron’s weight vector.**\nTypically:\n\n* Each neuron i has weight vector `w_i = (w1, w2, …, wn)`.\n* For visualization we choose:\n\n  * either the first two components\n  * or a projection (PCA)\n  * or a grid coordinate + color coding\n\n**weightsAsPoints2D = Collection of {x,y} pairs for each neuron.**\n\nThis is the *input* for scatter plots, U-Matrix visualizations, component planes, etc.\n\n### **Lesson 7 – Where this appears in Kohonen (1995)**\n\nUse **Kohonen 2001** / **1995** Ch. 3 (Basic SOM):\n\n* §3.1–3.4 explain topology preservation\n* §3.14 shows examples of 2D maps of high-dimensional weight vectors.\n  This is exactly where the idea of projecting weights into 2D for visualization is introduced.\n\n---\n\n# **4. GT View Integration (KohonenSom Path)**\n\nNow we move to creating GT views analogous to the Plotter examples.\n\n### **Lesson 8 – GT View Anatomy**\n\nIntroduce:\n\n```smalltalk\n<gtView>\n^ aView forward\n    title: 'weightsAsPoints2D';\n    object: [ self weightsAsPoints2D asGtJson ];\n    view: #gtJsonObjectFor:context:\n```\n\nExplain:\n\n* `aView forward` = same pattern used in Plotter examples\n* mapping model → view → widget\n* For KohonenSom we will switch view to Plotter scatter\n\n### **Lesson 9 – KohonenSom>>#gtWeightsOn: (1D plot)**\n\nDesign a view that plots only weight magnitudes or single component over neurons.\n\nConcept:\n\n```smalltalk\n<gtView>\n^ aView forward\n   title: 'SOM weight distributions';\n   object: [ self weights ]; \n   view: #gtPlotterOfWeightsOn:\n```\n\nThen implement `gtPlotterOfWeightsOn:` to create a bar chart or line chart.\n\n### **Lesson 10 – KohonenSom>>#gtWeights2DOn: (2D scatter)**\n\nThis is the Plotter scatter lesson applied to SOM:\n\n```smalltalk\ngtWeights2DOn: aView\n    <gtView>\n    | pts data scatter |\n    pts := self weightsAsPoints2D.\n    data := GtPlotterDataGroup new values: pts.\n    scatter := GtPlotterScatterPlot new\n        x: [:p | p first];\n        y: [:p | p second];\n        with: data.\n    ^ aView explicit stencil: scatter\n```\n\nHere the Newcomer should clearly see:\n\n* *Plotter data group* ← points\n* *Scatter plot mapping* ← x: y:\n* *Visualization* ← exactly same as Plotter examples\n\n---\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:00:07.124706+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:01:37.233032+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "GuueQB4ADgCnTl0xCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# **5. Final Module — Visualizing Input Space**\n\nNow that the learner knows how to plot points and how to expose SOM weights:\n\n### **Lesson 11 – Visualize input samples in 2D**\n\nGiven a training set (e.g., random 2D vectors):\n\n```smalltalk\nGtPlotterScatterPlot new with:\n    (GtPlotterDataGroup new values: inputPoints)\n```\n\n### **Lesson 12 – Visualize weights + input space together**\n\nAdd a second series:\n\n* SOM weights as blue points\n* Input points in gray\n* Optional grid connections\n\nThis becomes the classic SOM “map in data space” view (Kohonen 1995, §3.4.1).\n\n### **Lesson 13 – SOM grid topology visualization**\n\nPlot the neuron lattice edges:\n\n* Connect weight vectors of adjacent neurons → “elastic net” visualization.\n\nThis replicates Fig. 3.3 / 3.4 type diagrams in Kohonen (1995).\n\n---\n\n# **6. Output for GT Curriculum**\n\nYou can now create a **Curriculum path: “Visualizing SOMs”** with the structure:\n\n1. Plotter Basics\n2. Plotter for 2D Points\n3. Understanding SOM Weight Geometry\n4. GT Views for SOM (gtWeightsOn:, gtWeights2DOn:)\n5. Full Data vs Weight Visualization\n6. Combined Input-Space + SOM Map Visualization\n\nEach lesson has a:\n\n* Concept\n* GT example\n* Optional exercise\n* (Later) test cases\n* A “playground snippet” ready for compile:\n\nThis aligns with your Moldable Development Curriculum structure.\n\n---\n\n# **If you want**, I can now:\n\n* Produce ready-to-import **Lepiter pages** for each lesson.\n* Produce **`compile:` do-it chunks** for all views and examples.\n* Produce **GtExamples** for each lesson with red→green tests.\n* Produce a **Conventional Commit message** for adding the whole learning path.\n\nJust tell me which deliverable you want next.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:00:38.887928+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:00:38.887928+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Plotter → understanding GtPlotterDataGroup → building simple 2D point views → → GT views for KohonenSom (#gtWeightsOn:, #gtWeights2DOn:) → → visualizing input space and SOM weights"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "43e89e40-1e00-0e00-a74d-05de0b0f948e"
+	}
+}
