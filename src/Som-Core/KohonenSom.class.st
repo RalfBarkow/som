@@ -1,0 +1,208 @@
+Class {
+	#name : #KohonenSom,
+	#superclass : #Object,
+	#instVars : [
+		'inputDimension',
+		'width',
+		'height',
+		'weights',
+		'maxIterations',
+		'iterationCount',
+		'initialLearningRate',
+		'initialRadius',
+		'learningTimeConstant',
+		'radiusTimeConstant'
+	],
+	#category : #'Som-Core'
+}
+
+{ #category : #training }
+KohonenSom >> bestMatchingUnitIndexFor: inputVector [
+    "Return the index of the weight vector closest to inputVector."
+    
+    | bestIndex bestDistance |
+    bestIndex := nil.
+    bestDistance := nil.
+    1 to: weights size do: [ :i |
+        | d |
+        d := self distanceSquaredBetween: (weights at: i) and: inputVector.
+        (bestDistance isNil or: [ d < bestDistance ]) ifTrue: [
+            bestDistance := d.
+            bestIndex := i ] ].
+    ^ bestIndex
+]
+
+{ #category : #metrics }
+KohonenSom >> distanceSquaredBetween: v1 and: v2 [
+    "Squared Euclidean distance between two vectors (Arrays of numbers)."
+    
+    | sum |
+    sum := 0.0.
+    1 to: inputDimension do: [ :k |
+        | d |
+        d := (v1 at: k) - (v2 at: k).
+        sum := sum + (d * d) ].
+    ^ sum
+]
+
+{ #category : #geometry }
+KohonenSom >> gridDistanceSquaredFrom: p1 to: p2 [
+    "Squared Euclidean distance on the neuron grid."
+    
+    | dx dy |
+    dx := p1 x - p2 x.
+    dy := p1 y - p2 y.
+    ^ (dx * dx) + (dy * dy)
+]
+
+{ #category : #accessing }
+KohonenSom >> height [
+    ^ height
+]
+
+{ #category : #initialization }
+KohonenSom >> initializeRandomWeights [
+    "Initialize all weight vectors with random values in [0, 1]."
+    
+    | numberOfNeurons |
+    numberOfNeurons := width * height.
+    weights := Array new: numberOfNeurons.
+    1 to: numberOfNeurons do: [ :i |
+        weights
+            at: i
+            put: (Array new: inputDimension
+                streamContents: [ :stream |
+                    1 to: inputDimension do: [ :k |
+                        stream nextPut: (Random new next) ] ]) ]
+]
+
+{ #category : #initialization }
+KohonenSom >> initializeWithInputDimension: anInteger width: aWidth height: aHeight iterations: totalIterations [
+    inputDimension := anInteger.
+    width := aWidth.
+    height := aHeight.
+    maxIterations := totalIterations.
+    iterationCount := 0.
+    initialLearningRate := 0.1.
+    initialRadius := (width max: height) / 2.0.
+    learningTimeConstant := maxIterations asFloat / 2.0.
+    radiusTimeConstant := maxIterations asFloat / (initialRadius ln).
+    self initializeRandomWeights.
+    ^ self
+]
+
+{ #category : #accessing }
+KohonenSom >> inputDimension [
+    ^ inputDimension
+]
+
+{ #category : #training }
+KohonenSom >> learningRateAtTime: t [
+    "Exponential decay of the learning rate.
+    t is zero-based iteration index."
+    
+    ^ initialLearningRate * (Float e raisedTo: (t negated / learningTimeConstant))
+]
+
+{ #category : #training }
+KohonenSom >> neighborhoodInfluenceAtTime: t winnerIndex: winnerIndex neuronIndex: neuronIndex [
+    "Gaussian neighborhood h_ci(t) in the neuron grid."
+    
+    | sigma2 dist2 |
+    sigma2 := (self radiusAtTime: t) squared.
+    sigma2 = 0 ifTrue: [ ^ 0 ].
+    dist2 := self
+        gridDistanceSquaredFrom: (self positionOfIndex: winnerIndex)
+        to: (self positionOfIndex: neuronIndex).
+    ^ Float e raisedTo: (dist2 negated / (2.0 * sigma2))
+]
+
+{ #category : #geometry }
+KohonenSom >> positionOfIndex: index [
+    "Return the 2D grid coordinates (x @ y) for a 1-based linear index."
+    
+    | zeroBased x y |
+    zeroBased := index - 1.
+    x := (zeroBased \\ width).
+    y := (zeroBased // width).
+    ^ x @ y
+]
+
+{ #category : #training }
+KohonenSom >> radiusAtTime: t [
+    "Exponential decay of the neighborhood radius."
+    
+    ^ initialRadius * (Float e raisedTo: (t negated / radiusTimeConstant))
+]
+
+{ #category : #'batch-training' }
+KohonenSom >> trainBatchOn: aCollection iterations: batchIterations [
+    "Skeleton for the Batch Map algorithm (Sec. 3.14).
+    For now, this just calls the online trainer; fill with
+    the true batch algorithm later."
+    
+    ^ self trainOn: aCollection
+]
+
+{ #category : #training }
+KohonenSom >> trainOn: aCollection [
+    "Train the SOM for maxIterations iterations, cycling through aCollection."
+    
+    1 to: maxIterations do: [ :t |
+        | index input |
+        index := ((t - 1) \\ aCollection size) + 1.
+        input := aCollection at: index.
+        self trainOne: input atTime: t - 1 ].
+    ^ self
+]
+
+{ #category : #training }
+KohonenSom >> trainOne: inputVector atTime: t [
+    "Perform one SOM update step for a single input vector."
+    
+    | eta winner radius |
+    eta := self learningRateAtTime: t.
+    winner := self bestMatchingUnitIndexFor: inputVector.
+    radius := self radiusAtTime: t.  "not used directly but makes intent explicit"
+    
+    1 to: weights size do: [ :i |
+        | h |
+        h := self
+            neighborhoodInfluenceAtTime: t
+            winnerIndex: winner
+            neuronIndex: i.
+        self
+            updateNeuronAt: i
+            withInput: inputVector
+            learningRate: eta
+            neighborhoodInfluence: h ].
+    
+    iterationCount := iterationCount + 1
+]
+
+{ #category : #training }
+KohonenSom >> updateNeuronAt: neuronIndex
+    withInput: inputVector
+    learningRate: eta
+    neighborhoodInfluence: h [
+    "Apply Kohonen update: m_i <- m_i + eta * h * (x - m_i)."
+    
+    | w |
+    h = 0 ifTrue: [ ^ self ].
+    w := weights at: neuronIndex.
+    1 to: inputDimension do: [ :k |
+        | old delta |
+        old := w at: k.
+        delta := eta * h * ((inputVector at: k) - old).
+        w at: k put: old + delta ]
+]
+
+{ #category : #accessing }
+KohonenSom >> weights [
+    ^ weights
+]
+
+{ #category : #accessing }
+KohonenSom >> width [
+    ^ width
+]
