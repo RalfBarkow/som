@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T11:25:27.319101+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T11:25:30.058613+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "sDLjYhUADgCMmvUHA2XFGA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here is a clean **project start capsule** for your new project **\"som\"**, distilled from the provided bibliography and aligned with your GT/DMX/Elm multi-agent ecosystem. No assumptions, no premature architecture—just a sharp foundation you can build on.\n\n---\n\n# **som — Project Kickoff (from bibliography)**\n\n## **1. Core Intellectual Basis**\n\nYour bibliography gives you **three tightly interlocking domains**:\n\n### **A. Foundational SOM Theory (Kohonen 1989–2013)**\n\nThese works establish:\n\n* Competitive learning\n* Topology-preserving maps\n* Best Matching Unit (BMU)\n* Neighborhood functions (Gaussian, bubble, etc.)\n* Vector Quantization (LVQ) as refinement\n* Hierarchical clustering via SOM\n* Semantic mapping / linguistic applications\n* Practical guidelines for training\n\nThis forms the **mathematical + algorithmic spine** of the project.\n\n---\n\n### **B. High-dimensional Applications**\n\nTwo major clusters:\n\n#### **• WEBSOM (Kaski et al. 1998)**\n\n* SOM for large document collections\n* Two-layer architecture\n* High-dimensional sparse text vectors\n* Semantic topography\n* Document organization as a spatial map\n* Precursor to modern semantic embeddings\n\n#### **• SKiNET (Banbury et al. 2019)**\n\n* SOM variant for **Raman spectroscopy**\n* Biomedical signal classification\n* Self-optimizing Kohonen Index Network\n* Domain example of “explainable topology of biomarkers”\n\nThese define **application patterns**:\n✔ large, messy, high-dimensional data\n✔ strong need for *topographic interpretability*\n✔ domain-tailored distance metrics\n\n---\n\n### **C. Modern Implementations & Flexibility**\n\n#### **• kohonen 3.0 (Wehrens & Kruisselbrink 2018)**\n\n* Batch training (parallel, scalable)\n* Data-dependent distance functions\n* Memory-efficient implementation\n* Integration with Rcpp\n\n#### **• SOM Toolbox (HUT)**\n\n* Canonical implementation reference\n* Definitive pseudocode for SOM + LVQ\n\nThese define how **som** should be implemented today:\n\n* **batch SOM default**\n* **pluggable distance metric**\n* **memory-robust**\n* **parallelizable**\n* **interoperable with modern embedding pipelines**\n\n---\n\n## **2. What This Means for Project \"som\"**\n\n### **som = a next-generation Kohonen engine**\n\nThe project is positioned to integrate:\n\n1. **Strict Kohonen-faithful fundamentals**\n   (BMU selection, competitive learning, topology guarantees)\n\n2. **Modern embedding ecosystems**\n   (textual, spectral, multimodal → all representable as vectors)\n\n3. **Flexible metric system**\n   (an explicit requirement from kohonen 3.0)\n\n4. **“Semantic topography” outputs**\n   (maps, inspectable neighborhoods, trajectories)\n\n5. **GT/DMX/FedWiki integration**\n   (this is your real differentiator)\n\nYou are not building “yet another clustering tool”;\nyou are building a **sense-making substrate**, a *semantic surface* that other agents can operate upon.\n\n---\n\n## **3. Recommended Initial System Breakdown**\n\n### **(1) som-core**\n\n* Neuron lattice (rectangular, hexagonal)\n* Weight vectors\n* Learning rate schedule\n* Neighborhood kernel\n* Distance metrics (plug-in)\n* BMU selection\n* Batch SOM algorithm\n* LVQ (optional, later)\n\n### **(2) som-data**\n\n* Adapters for:\n\n  * text embeddings (OpenAI, transformer, DMX topic vectors)\n  * spectroscopy vectors (SKiNET reference)\n  * generic high-dimensional input\n  * normalizers, PCA/LDA pre-processors\n\n### **(3) som-map**\n\n* Unified map format for:\n\n  * U-matrix\n  * hit histogram\n  * component planes\n  * activation trajectories\n  * neighborhood overlays\n\n### **(4) som-gt-integration**\n\n* GT views:\n\n  * matrix view\n  * activation animation\n  * BMU trajectory inspector\n  * component overlays\n* GT Examples for every major operation\n* DMX plugin for storing SOMs as topics\n* FedWiki plugin for SOM maps\n\n### **(5) som-cli**\n\n* `som train`, `som project`, `som visualize`\n* suitable for integration with Codex CLI workflows\n\n---\n\n## **4. What Som *Is* and *Is Not***\n\n### **som is:**\n\n* A substrate for *semantic cartography*\n* A bridge between high-dimensional data and GT’s moldable UI\n* A tool for multi-agent semantic coordination\n* A modernized Kohonen engine\n\n### **som is not:**\n\n* A deep learning library\n* A black-box classifier\n* A replacement for embedding models\n* A WEBSOM clone\n\nThe system maps **already existing embeddings** into a stable, explainable **semantic manifold**.\n\nThis aligns perfectly with your ecosystem’s goals (DMX, FedWiki, GT curriculum).\n\n---\n\n## **5. Next Steps (pick one and I’ll deliver)**\n\n### **Option A:**\n\nGenerate **SPEC.md**, **IMPLEMENTATION_PLAN.md**, and **WORKLOG.md** (your preferred 4-file set).\n\n### **Option B:**\n\nProduce a **GT “Store on” binder** with:\n\n* som-core class scaffolding\n* GT Examples placeholders\n* map visualizers\n\n### **Option C:**\n\nGenerate **a first working SOM implementation** in either:\n\n* Pharo\n* Elm\n* Python\n* R\n* a hybrid pipeline\n\n### **Option D:**\n\nProduce a **literature synthesis** mapping each citation to features/requirements.\n\n### **Option E:**\n\nStart an **agent-architecture** for “som-agent” in your Society of Agents.\n\n---\n\nTell me which we do first.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T11:25:45.562189+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T11:25:45.562189+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "som — Project Kickoff (from bibliography)"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "8d16e362-1500-0e00-8c99-10c80365c518"
+	}
+}
