@@ -55,6 +55,39 @@ KohonenSom >> gridDistanceSquaredFrom: p1 to: p2 [
     ^ (dx * dx) + (dy * dy)
 ]
 
+{ #category : #'as yet unclassified' }
+KohonenSom >> gtJsonFor: aView [
+	<gtView>
+	^ aView forward
+		title: 'weightsAsPoints2D';
+		object: [ self weightsAsPoints2D asGtJson ];
+		view: #gtJsonObjectFor:context:
+]
+
+{ #category : #'gt-views' }
+KohonenSom >> gtWeights2DOn: aView [
+    <gtView>
+    ^ aView mondrian
+        title: 'Weights 2D';
+        painting: [ :m |
+            m nodes
+                shape: [ :p |
+                    BlElement new
+                        size: 5 @ 5;
+                        geometry: BlEllipseGeometry new ];
+                with: self weightsAsPoints2D ]
+]
+
+{ #category : #'gt-views' }
+KohonenSom >> gtWeightsOn: aView [
+    <gtView>
+    ^ aView table
+        title: 'Weights';
+        items: [ 1 to: weights size ];
+        column: 'Index' text: [ :i | i asString ];
+        column: 'Vector' text: [ :i | (weights at: i) printString ]
+]
+
 { #category : #accessing }
 KohonenSom >> height [
     ^ height
@@ -200,6 +233,16 @@ KohonenSom >> updateNeuronAt: neuronIndex
 { #category : #accessing }
 KohonenSom >> weights [
     ^ weights
+]
+
+{ #category : #converting }
+KohonenSom >> weightsAsPoints2D [
+    "Return a collection of Points for 2D SOMs (first two components)."
+    
+    ^ weights collect: [ :w |
+        (w size >= 2)
+            ifTrue: [ (w first) @ (w second) ]
+            ifFalse: [ 0 @ 0 ] ]
 ]
 
 { #category : #accessing }

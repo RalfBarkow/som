@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T16:49:38.635344+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T16:49:40.18291+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lrpG6hkADgCBWJTVAT/fMQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here’s a first, safe GT view for `KohonenSom` plus a helper you can extend later.\n\n### 1. Table view of the weights\n\n**Do it:**\n\n```smalltalk\nKohonenSom compile: '\ngtWeightsOn: aView\n    <gtView>\n    ^ aView table\n        title: ''Weights'';\n        items: [ 1 to: weights size ];\n        column: ''Index'' text: [ :i | i asString ];\n        column: ''Vector'' text: [ :i | (weights at: i) printString ]'\nclassified: 'gt-views'.\n```\n\nThis gives you a simple table: one row per neuron, showing its index and full weight vector.\n\n---\n\n### 2. Helper for 2D scatter (for 2-dimensional SOMs)\n\n**Do it:**\n\n```smalltalk\nKohonenSom compile: '\nweightsAsPoints2D\n    \"Return a collection of Points for 2D SOMs (first two components).\"\n    \n    ^ weights collect: [ :w |\n        (w size >= 2)\n            ifTrue: [ (w first) @ (w second) ]\n            ifFalse: [ 0 @ 0 ] ]'\nclassified: 'converting'.\n```\n\n---\n\n### 3. Simple 2D Mondrian view (optional, if you want a scatterplot)\n\nIf you want a visual scatter right away, try this Mondrian view (you can tweak sizes/layout later):\n\n```smalltalk\nKohonenSom compile: '\ngtWeights2DOn: aView\n    <gtView>\n    ^ aView mondrian\n        title: ''Weights 2D'';\n        painting: [ :m |\n            m nodes\n                shape: [ :p |\n                    BlElement new\n                        size: 5 @ 5;\n                        geometry: BlEllipseGeometry new ];\n                with: self weightsAsPoints2D ]'\nclassified: 'gt-views'.\n```\n\n---\n\nAfter these are compiled, run your `KohonenSomExamples exampleUnitSquare2D`, inspect the resulting `KohonenSom`, and you should see:\n\n* a **“Weights”** table view, and\n* if you added it, a **“Weights 2D”** Mondrian scatter view.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T16:49:56.167142+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T16:49:56.167142+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "GT view for KohonenSom"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f5b746ea-1900-0e00-8157-448d013fdf31"
+	}
+}

@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T16:55:55.807846+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T16:56:09.502398+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "qezBABoADgCBhZahAT/fMQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtMehKohonenSom>>#weightsAsPoints2D}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T16:55:17.402846+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T16:55:19.505938+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Zel3/hkADgCBf1xrAT/fMQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "`weightsAsPoints2D` is “what the map has learned”, expressed in **input space coordinates**, not grid coordinates.\n\nGiven the method we defined earlier:\n\n```smalltalk\nweightsAsPoints2D\n    ^ weights collect: [ :w |\n        (w size >= 2)\n            ifTrue: [ (w first) @ (w second) ]\n            ifFalse: [ 0 @ 0 ] ].\n```\n\nfor each neuron (i):\n\n* the neuron has a **weight vector** (w_i = (w_{i1}, w_{i2})) in (\\mathbb{R}^2),\n* we turn that into a Smalltalk `Point` `w_{i1} @ w_{i2}`.\n\nSo:\n\n* `weightsAsPoints2D` = the **set of prototype vectors** (codebook vectors) after training,\n* each point lies in (roughly) the unit square, because your training data were random in `[0,1]×[0,1]`.\n\nIn your GT view\n\n```smalltalk\ngtJsonFor: aView\n    <gtView>\n    ^ aView forward\n        title: 'weightsAsPoints2D';\n        object: [ self weightsAsPoints2D asGtJson ];\n        view: #gtJsonObjectFor:context:\n```\n\nyou are seeing these points serialized as JSON:\n\n* an array of objects / tuples, each representing one neuron’s **learned position in input space**.\n\nImportant distinction:\n\n* `positionOfIndex:` → where the neuron sits on the **SOM grid** (lattice coordinates (r_i)),\n* `weightsAsPoints2D` → where that neuron’s prototype lies in the **data space** (feature coordinates (m_i)).\n\nSo the JSON you see is literally “all current SOM prototype locations in the 2D input space.”\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T16:55:38.627535+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T16:55:38.627535+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "weightsAsPoints2D"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "e0e477fe-1900-0e00-817e-c9b0013fdf31"
+	}
+}

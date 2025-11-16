@@ -1,0 +1,976 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:55:21.549362+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:55:21.549362+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "c7gFWR0ADgCb0TKoAEG+TA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here is your **edition-to-edition DIFF of topics**, strictly grounded in the two PDFs you attached:\n\n* **1995:** *Self-Organizing Maps* (1st edition)\n* **2001:** *Self-Organizing Maps* (3rd edition)\n\nThe diff shows **exactly what is NEW or CHANGED** in the 3rd edition compared to the earlier book, using the preface sections and the chapter-level evidence from the full PDF. [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691a2247-ba7c-8331-afdc-3d7c8dfd16d2)\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:03.093113+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:41.976025+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "e34xTR0ADgCbOHcrAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### **Present in 2001, Not in 1995**\n\n**(a) Eigenvectors & eigenvalues of symmetric matrices**\n– Added in Sect. 1.1.3 of 2001 edition.\n\n\n**(b) Factor analysis**\n– Added as new probabilistic method in Sect. 1.3.1.\n\n\n**(c) Survey of projection methods**\n– New Sect. 1.3.2 created to relate SOM to PCA, MDS, etc.\n\n\n**NOT in 1995**: The first edition only has basic vector/matrix preliminaries and no full projection-methods survey.\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:52:41.962483+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:52:41.962483+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "eJ2CTx0ADgCbYosTAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **1. NEW: Deepened statistical foundations**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:51:54.297272+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:51.399466+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "rE2rTB0ADgCbKg4XAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### (Huge change compared to 1995)\n\n**(a) Unified VQ treatment**\n– New main section reorganizing VQ material.\n\n\n**(b) NEW derivation: point density of codebook vectors via calculus of variations**\n– Not present in 1995.\n– Added to make VQ → SOM link mathematically explicit.\n\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:52:51.385258+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:52:51.385258+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "4mUSUB0ADgCbbKRNAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **2. NEW: Completely revised & expanded Vector Quantization chapter**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:08.770001+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:53:01.539464+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "BiWITR0ADgCbP/HZAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### These sections are **not in the 1995 book**.\n\n**(a) Historical review of neural maps (Sect. 2.2)**\n\n\n**(b) Expanded discussions of philosophy (Sects. 2.3, 2.5, 2.14)**\n– Covering biological relevance, justification of map formation, etc.\n\n\n**NOT in 1995**: The 1995 Preface states the ASSOM is new, but strong philosophical framing sections were not present. The new 2001 sections describe three “phases of neural models” and deeper adaptation/memory frameworks.\n\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:01.527656+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:01.527656+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "8yetUB0ADgCbdp5NAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **3. NEW: Expanded neural-modeling philosophy**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:12.51542+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:53:13.254662+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "eUrBTR0ADgCbRpOPAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### (All these sections did *not* exist in the 1995 book.)\n\n**(a) Qualitative introduction to SOM (Sect. 3.1)**\n\n\n**(b) Point density of model vectors (Sect. 3.12)**\n– One of the largest conceptual additions.\n– Explicit relationship between input distribution, VQ density, and SOM distortion.\n\n\n**(c) Interpretation of SOM mapping (Sect. 3.16)**\n– Newly added analytical interpretation of what the mapping preserves/distorts.\n\n\nThese three sections do **not appear** in the 1995 book’s corresponding chapter.\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:13.246923+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:13.246923+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "bPVfUR0ADgCbgESeAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **4. NEW: Major additions to SOM theory (Chapter 3)**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:15.776729+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:53:24.712129+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "DQzzTR0ADgCbTa+YAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### Not in the 1995 edition.\n\n**(a) SOM of symbol strings (Sect. 5.7)**\n– Handles textual and discrete-sequence data.\n\n\n**(b) Evolutionary SOM (Sect. 5.9)**\n– New learning paradigm extending SOM with evolutionary principles.\n\n\nIn 1995, Chapter 5 was almost entirely about **ASSOM** (Adaptive-Subspace SOM).\n\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:24.702854+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:24.702854+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "dMgOUh0ADgCbisCgAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **5. NEW: New SOM variants (Chapter 5)**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:19.00769+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:53:34.941506+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "6VokTh0ADgCbVFlJAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### Mentioned as *added* in the 3rd edition.\n\n\n\n1995 has LVQ but no batch LVQ1 algorithm.\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:34.934066+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:34.934066+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "WuaqUh0ADgCblLc9AEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **6. NEW: LVQ1 batch-computation scheme (Chapter 6)**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:52:24.338033+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:53:48.352835+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "lbB1Th0ADgCbWwOhAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### 3rd Edition:\n\n**Full revision + new version capable of mapping 7 million patent abstracts**\n\n\n### 2nd Edition (1996):\n\nHad only first WEBSOM introduction (Sect. 7.8).\n\n\n### 1st Edition (1995):\n\nNo WEBSOM.\n\nSo this is a **3rd-edition-only** expansion.\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:48.343951+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:53:48.343951+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "74R3Ux0ADgCbnqeeAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **7. NEW: Major WEBSOM update (Chapter 7)**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:54:07.066616+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:54:07.066616+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "DjSVVB0ADgCbrxeLAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### A major addition.\n\nThe 1995 edition has **no software-tools chapter**.\nThe 2001 edition adds a **full chapter on implementation**, visualization, and practical usage.\n\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:54:02.356226+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:54:02.356226+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "41RNVB0ADgCbqPK7AEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **8. NEW: Entire Chapter 8 — Software Tools**"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [
+									{
+										"__type" : "textSnippet",
+										"children" : {
+											"__type" : "snippets",
+											"items" : [ ]
+										},
+										"createEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"createTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:54:22.1332+01:00"
+											}
+										},
+										"editEmail" : {
+											"__type" : "email",
+											"emailString" : "<unknown>"
+										},
+										"editTime" : {
+											"__type" : "time",
+											"time" : {
+												"__type" : "dateAndTime",
+												"dateAndTimeString" : "2025-11-16T20:54:22.1332+01:00"
+											}
+										},
+										"uid" : {
+											"__type" : "uid",
+											"uidString" : "kRN7VR0ADgCbwFXWAEG+TA=="
+										},
+										"paragraphStyle" : {
+											"__type" : "textStyle"
+										},
+										"string" : "### NEW in 2001:\n\n**(a) Hardware SOM implementation**\n– Added at the end of Chapter 9.\n\n\n**(b) Reorganized literature survey**\n– Over 4000 SOM-related publications included.\n– “Taxonomy and indexing now more logical.”\n\n\n### 1995 literature survey:\n\n~1500 papers, no hardware section, no taxonomy.\n\n\n---\n"
+									}
+								]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:54:17.99012+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:54:17.99012+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "6OE7VR0ADgCbuWTvAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "# **9. NEW: Hardware implementation & reorganized taxonomy (Chapter 9 & 10)**"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:56:31.738627+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:56:31.738627+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WLk0XR0ADgCb3AEuAEG+TA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# ✅ **TOPIC DIFF — What is new in 2001 compared to 1995**\n\nEverything listed below is **explicitly mentioned in the 3rd-edition Preface** and is **not present** in the 1995 book.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:57:51.37876+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:57:51.37876+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "UO/zYR0ADgCcDHcuAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "| Topic                                    | 1995 Edition | 2001 Edition                 | DIFF            |\n| ---------------------------------------- | ------------ | ---------------------------- | --------------- |\n| Eigenvalue/eigenvector analysis          | ❌            | ✔ Sect. 1.1.3                | **NEW**         |\n| Factor analysis                          | ❌            | ✔ Sect. 1.3.1                | **NEW**         |\n| Projection methods survey                | ❌            | ✔ Sect. 1.3.2                | **NEW**         |\n| VQ derivation via calculus of variations | ❌            | ✔                            | **NEW**         |\n| Expanded neural-model philosophy         | ❌            | ✔ Sects. 2.2, 2.3, 2.5, 2.14 | **NEW**         |\n| SOM qualitative intro                    | ❌            | ✔ Sect. 3.1                  | **NEW**         |\n| Point density of model vectors           | ❌            | ✔ Sect. 3.12                 | **NEW**         |\n| Interpretation of SOM mapping            | ❌            | ✔ Sect. 3.16                 | **NEW**         |\n| SOM of symbol strings                    | ❌            | ✔ Sect. 5.7                  | **NEW**         |\n| Evolutionary SOM                         | ❌            | ✔ Sect. 5.9                  | **NEW**         |\n| Batch LVQ1                               | ❌            | ✔ Chap. 6                    | **NEW**         |\n| WEBSOM large-scale version               | ❌            | ✔ Chap. 7                    | **MAJOR NEW**   |\n| Software tools chapter                   | ❌            | ✔ Chap. 8                    | **NEW CHAPTER** |\n| Hardware implementation                  | ❌            | ✔ (Chap. 9)                  | **NEW**         |\n| Expanded, reorganized taxonomy           | ❌            | ✔ Chap. 10                   | **NEW**         |\n"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:57:40.482684+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:57:40.482684+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "hK1NYR0ADgCcAq8mAEG+TA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# 🎯 **CONDENSED DIFF – One Screen**"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:58:02.301828+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-16T20:58:02.301828+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "3ZuaYh0ADgCcHsbUAEG+TA=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "All the topics we previously extracted **match exactly the diff above**:\n\n* Statistical foundations → matched.\n* VQ theory + point density → matched.\n* Philosophy → matched.\n* SOM mapping interpretation → matched.\n* Symbol-string SOM & evolutionary SOM → matched.\n* LVQ1 batch → matched.\n* WEBSOM (large-scale) → matched.\n* Software tools → matched.\n* Hardware & taxonomy → matched.\n\nEverything aligns perfectly with the attached PDFs.\n"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:57:57.351496+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:57:57.351496+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "fg1PYh0ADgCcF1EvAEG+TA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# 🧭 Alignment with “our conversation nodes”"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:50:15.548012+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T20:58:20.365205+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6Y7IRh0ADgCa+FUhAEG+TA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "If you want, I can now deliver additional diffs:\n\n✅ **diff between 1995 → 1996 (2nd edition)**\n✅ **diff between 1996 → 2001 (3rd edition)** (more granular)\n✅ **diff in terms of equations**\n✅ **diff in terms of algorithms**\n✅ **diff in terms of conceptual categories** (for GT curriculum mapping)\n\nWhich diff do you want next?\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T20:51:37.445685+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T20:51:37.445685+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "What is NEW or CHANGED in the 3rd edition compared to the earlier book"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "5f81c846-1d00-0e00-9af7-17b80041be4c"
+	}
+}

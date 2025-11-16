@@ -4,6 +4,18 @@ Class {
 	#category : #'Som-Examples'
 }
 
+{ #category : #'as yet unclassified' }
+KohonenSomExamples class >> exampleInputSpace2D [
+    <gtExample>
+    "Generate random 2D input samples and visualize them."
+    
+    | data |
+    data := (1 to: 500) collect: [ :i |
+        (Random new next) @ (Random new next) ].
+
+    ^ data
+]
+
 { #category : #examples }
 KohonenSomExamples class >> exampleUnitSquare2D [
     <gtExample>

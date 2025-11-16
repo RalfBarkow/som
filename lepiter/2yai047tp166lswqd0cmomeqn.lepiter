@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T17:02:39.960683+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T17:02:39.970003+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4+mqGBoADgCCLI5CAT/fMQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "What you see in `weightsAsPoints2D` is **exactly** what Kohonen calls the **model / codebook / reference vectors** (m_i) plotted in the *input space*.\n\nIn the book this is explained in (edition-numbers may differ slightly, but structure is the same for 1995 vs 2001):\n\n1. **Vector quantization & codebook vectors (input space prototypes)**\n\n   * In **Chapter “Mathematical Preliminaries”**, in the section on **Vector Quantization**, Kohonen introduces input vectors (x) and **codebook vectors** (m_i) and explains that the input space is partitioned into regions, each represented by one (m_i) (a “model” / “codebook” vector).([SpringerLink][1])\n   * That is the conceptual origin of `weights` in your `KohonenSom`: each element of `weights` is one of these (m_i).\n\n2. **The Basic SOM: models (m_i) + grid locations (r_i)**\n\n   * In **Chapter “The Basic SOM”**, at the start of the chapter, he defines the SOM by:\n\n     * input vectors (x(t)) in (\\mathbb{R}^n),\n     * model/reference vectors (m_i(t)),\n     * grid positions (r_i) for each neuron,\n     * winner selection (c = \\arg\\min_i |x - m_i|), and\n     * the learning rule (m_i(t+1) = m_i(t) + \\alpha(t) h_{ci}(t)(x(t) - m_i(t))).([sci2s.ugr.es][2])\n   * Here he explicitly says that **the models (m_i) live in the same input space as the data** and that the SOM is a discrete approximation of the data distribution.\n\n3. **Geometrical / interpretive explanation**\n\n   * In the same chapter’s **geometrical / interpretation subsections**, he explains that:\n\n     * the **grid coordinates** (r_i) describe where the neuron sits on the map,\n     * the **model vectors** (m_i) tell where that neuron “points” in the input space, and\n     * similar data items end up mapped to nearby neurons because their (m_i) are close in input space.([Hasler Lab][3])\n\nSo:\n\n* Your `weights` array = the set of model/codebook/reference vectors (m_i) in Kohonen’s notation.\n* `weightsAsPoints2D` = those (m_i) plotted as 2D points in input space, exactly as discussed in the **Vector Quantization** section and formalized in **Chapter “The Basic SOM”** when he introduces the algorithm and its geometry.\n\n[1]: https://link.springer.com/content/pdf/10.1007/978-3-642-56927-2.pdf \"Self-Organizing Maps | SpringerLink\"\n[2]: https://sci2s.ugr.es/keel/pdf/algorithm/articulo/1990-Kohonen-PIEEE.pdf?utm_source=chatgpt.com \"The self-organizing map - Proceedings of the IEEE\"\n[3]: https://hasler.ece.gatech.edu/Courses/MachineLearning/FoundationalPapers/KohonenSOM2013.pdf \"Essentials of the self-organizing map\"\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T17:03:02.626304+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T17:03:02.626304+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Vector quantization & codebook vectors"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "1fe4aa18-1a00-0e00-822b-3d7f013fdf31"
+	}
+}
