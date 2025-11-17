@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T17:47:14.595592+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T17:49:11.897534+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "UN8b1i4ADgC+c3zjD7n69A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:AIGrid2DGenerator}}, {{gtClass:AIGraphAlgorithmsGtExamples}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T17:47:00.554546+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T17:47:00.554546+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "r5hF1S4ADgC+bpKzD7n69A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "First, I’ll connect **graph-algorithms** to your **som** conversations, then I’ll give you a **pharo-code-emitter** do-it with a small *“AIGraphAlgorithmsGtExamples”* class full of `<gtExample>`s that sit right next to the *PharoGraphs* booklet. [chatgpt](https://chatgpt.com/g/g-p-691b048a433081919f6bb980a8544d31-graph-algorithms/c/691b0592-f494-8329-a1c4-2944562db9c0)\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T17:46:13.809133+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T17:47:00.562917+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "MVh80i4ADgC+QxsyD7n69A=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "---\n\n## 1. How graph-algorithms relates to the *som* project nodes\n\nThink in terms of “conversation nodes” you’ve already been circling around:\n\n### a) SOM grids and graph generators\n\nIn *som* you already have:\n\n* `KohonenSom` + `weightsAsPoints2D`\n* Discussions about grids (rectangular / hexagonal neighbourhoods)\n* A wish for multiple **visualizations of the input space**\n\nIn **graph-algorithms** you have:\n\n* `AIGrid2DGenerator`, `AIHexagonalLatticeGenerator`, `AIKleinbergGraphGenerator`, etc., plus examples via `AIGrid2DGenerator class >> example1` etc. \n\nThese generator classes **are exactly** SOM-style neighbourhood graphs:\n\n* Each SOM unit = a **node**\n* Adjacency (4- or 8-neighbourhood, hex, small-world) = **edges**\n* You can treat these lattice graphs as:\n\n  * The **output space** structure of a SOM\n  * A playground for experimenting with *topology* before adding learning rules\n\nSo: one clear “node” in your som conversation graph is *“SOM neighbourhood lattice”* → directly backed by **AI-Algorithms-Graph-Generators**.\n\n---\n\n### b) Distances and neighbourhoods in input space\n\nIn SOM:\n\n* You repeatedly talk about **input space** structure, distances, nearest neighbours, and visualizing `weightsAsPoints2D`.\n* Conceptually, you are building something like a **k-NN graph** over input samples or weight vectors.\n\nIn graph-algorithms:\n\n* `AIBFS`, `AIDijkstra`, `AIBellmanFord`, `AIShortestPathInDAG`, `AILongestPathInDAG`, etc.\n* These give you *path-based* notions of proximity / connectivity:\n\nMapping to SOM:\n\n* **k-nearest-neighbour graph of inputs** → use weighted edges (distance or similarity) and run:\n\n  * `AIDijkstra` for shortest “semantic” paths through the data manifold.\n  * `AIBFS` for unweighted reachability / hop-radius neighbourhoods.\n* On the **SOM lattice graph**, “neighbourhood radius” is literally “all nodes with shortest-path distance ≤ r from the BMU” → directly yielded by BFS or Dijkstra.\n\nSo another “conversation node” is *“neighbourhood function around BMUs”* → formally a **shortest-path / BFS layer** from graph-algorithms.\n\n---\n\n### c) Curriculum & Basic SOM chapter\n\nIn the **gt-curriculum** work you asked:\n\n> “create all the necessary lessons and concepts needed for the Newcomer profile to understand ‘The Basic SOM’ chapter and experiment with different visualizations of the input space.”\n\nThe *PharoGraphs* booklet’s structure gives you a **natural prerequisite track**:\n\n1. **Basic definitions & graph representation** (Ch. 2–3) →\n   Learner becomes fluent with `AIGraphAlgorithm`, `nodes:`, `edges:from:to:`, `edges:from:to:weight:`.\n2. **Traversal & ordering**:\n\n   * BFS (shortest path on unweighted graphs)\n   * Topological sort (`AITopologicalSorting`)\n3. **Weighted distances**:\n\n   * `AIDijkstra`, `AIBellmanFord` → distance on weighted graphs.\n4. **Structure discovery**:\n\n   * `AITarjan` (SCC), `AIKruskal` / `AIPrim` (MST), `AIHits` (link analysis), matchings.\n\nThen Basic SOM chapter plugs in as:\n\n* **Output-space topology**: reuse the lattice / generator examples.\n* **Input-space structure**: reuse shortest-path examples, but with weight vectors instead of toy labels.\n* **Visual experiments**: GT `gtExamples` that *first* show raw graph structures, *then* show SOM views (`weightsAsPoints2D`) on top of similar layouts.\n\nSo in your “conversation topic map”, **graph-algorithms** is the *foundational graph-theory spine* that feeds directly into:\n\n* *“SOM lattice topology”*\n* *“Neighbourhood / radius / distance”*\n* *“Input-space graph visualizations”*\n* *“GT-curriculum: prerequisites for Basic SOM”*\n\n---\n\n## 2. pharo-code-emitter: gtExamples for *PharoGraphs*\n\nBelow is a **single do-it** that:\n\n1. Defines a class `AIGraphAlgorithmsGtExamples` in package\n   `AI-Algorithms-Graph-GT-Examples`.\n2. Adds a set of **class-side `<gtExample>` methods** corresponding roughly to the chapters of the *PharoGraphs* booklet:\n\n* Basic graph description\n* Topological sorting\n* BFS shortest path\n* Dijkstra shortest path\n* MST (Kruskal)\n* Strongly Connected Components (Tarjan)\n* HITS link analysis\n* Matching (greedy)\n* A SOM-flavoured grid example that bridges to your som project via `AIGrid2DGenerator`.\n\nYou can paste this into a Playground and *do it*.\n\n---\n\n### pharo-code-emitter:\n\n```smalltalk\n\"Create the examples class\"\n\nObject subclass: #AIGraphAlgorithmsGtExamples\n    instanceVariableNames: ''\n    classVariableNames: ''\n    package: 'AI-Algorithms-Graph-GT-Examples'.\n```\n\n```smalltalk\n\"A) Basic graph – chapter 3 style (adjacency list, unweighted)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\nbasicUnweightedGraph\n    <gtExample>\n    | algo |\n    \"Example for PharoGraphs, chapter 3: Graph Representation.\n    A small directed graph A → B, A → C, B → C.\"\n    algo := AIGraphAlgorithm new.\n    algo\n        nodes: #( $A $B $C );\n        edges: #(\n            #( $A $B )\n            #( $A $C )\n            #( $B $C )\n        ) from: #first to: #second.\n    ^ algo'\n    classified: 'examples - basic'.\n```\n\n```smalltalk\n\"B) Basic weighted graph – chapter 3 (edges:from:to:weight:)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\nbasicWeightedGraph\n    <gtExample>\n    | algo |\n    \"Example for PharoGraphs, section on weighted graphs.\"\n    algo := AIGraphAlgorithm new.\n    algo\n        nodes: #( $A $B $C );\n        edges: #(\n            #( $A $B 2 )\n            #( $A $C 4 )\n            #( $B $C 7 )\n        )\n        from: #first\n        to: #second\n        weight: #third.\n    ^ algo'\n    classified: 'examples - basic'.\n```\n\n```smalltalk\n\"C) Topological sorting – software modules (chapter 4)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\ntopologicalSortModules\n    <gtExample>\n    | sorter nodes edges |\n    \"PharoGraphs, chapter 4: A DAG representing module dependencies.\n     This is essentially the book''s software-modules example.\"\n    nodes := #( $A $B $C $D $E $F $G ).\n    edges := #(\n        #( $A $B )\n        #( $A $C )\n        #( $B $E )\n        #( $C $E )\n        #( $C $D )\n        #( $D $E )\n        #( $D $F )\n        #( $E $G )\n        #( $F $G )\n    ).\n    sorter := AITopologicalSorting new.\n    sorter\n        nodes: nodes;\n        edges: edges from: #first to: #second.\n    ^ sorter run  \"returns an OrderedCollection of models\"'\n    classified: 'examples - topo sort'.\n```\n\n```smalltalk\n\"D) BFS shortest path on unweighted graph (chapter 5 – BFS)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\nbfsShortestPathExample\n    <gtExample>\n    | bfs nodes edges |\n    \"PharoGraphs, chapter 5: shortest path on unweighted graph via BFS.\n     Simple toy graph from the booklet pattern.\"\n    nodes := $A to: $I.\n    edges := #(\n        #( $A $B ) #( $B $C ) #( $C $D ) #( $D $E ) #( $E $A )\n        #( $B $E ) #( $E $B ) #( $E $F ) #( $F $G ) #( $G $H )\n        #( $H $F ) #( $G $I ) #( $I $G )\n    ).\n    bfs := AIBFS new.\n    bfs\n        nodes: nodes;\n        edges: edges from: #first to: #second.\n    ^ bfs runFrom: $A to: $G  \"returns the path as a LinkedList of chars\"'\n    classified: 'examples - shortest path'.\n```\n\n```smalltalk\n\"E) Dijkstra shortest path on weighted graph (chapter 5 – Dijkstra)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\ndijkstraShortestPathExample\n    <gtExample>\n    | dijkstra nodes edges |\n    \"PharoGraphs, chapter 5: Dijkstra on a small weighted graph.\"\n    nodes := #( $A $B $C $D $E $F $G ).\n    edges := #(\n        #( $A $B 1 )\n        #( $A $C 4 )\n        #( $B $C 2 )\n        #( $B $D 5 )\n        #( $C $E 1 )\n        #( $D $F 2 )\n        #( $E $D 1 )\n        #( $E $G 3 )\n        #( $F $G 1 )\n    ).\n    dijkstra := AIDijkstra new.\n    dijkstra\n        nodes: nodes;\n        edges: edges\n            from: #first\n            to: #second\n            weight: #third.\n    ^ dijkstra runFrom: $A to: $G   \"shortest A→G path\"'\n    classified: 'examples - shortest path'.\n```\n\n```smalltalk\n\"F) Minimum Spanning Tree via Kruskal (chapter 6)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\nkruskalMstExample\n    <gtExample>\n    | algo nodes edges treeEdges |\n    \"PharoGraphs, chapter 6: Kruskal''s algorithm (MST).\"\n    nodes := #( $A $B $C $D $E ).\n    edges := #(\n        #( $A $B 3 )\n        #( $A $C 1 )\n        #( $B $C 1 )\n        #( $B $D 4 )\n        #( $C $D 2 )\n        #( $C $E 5 )\n        #( $D $E 1 )\n    ).\n    algo := AIKruskal new.\n    algo\n        nodes: nodes;\n        edges: edges\n            from: #first\n            to: #second\n            weight: #third.\n    treeEdges := algo run.   \"collection of AIGraphWeightedEdge\"\n    ^ treeEdges collect: [ :e |\n        { e from model. e to model. e weight } ]'\n    classified: 'examples - mst'.\n```\n\n```smalltalk\n\"G) Strongly Connected Components (Tarjan, chapter 7)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\ntarjanSccExample\n    <gtExample>\n    | algo nodes edges |\n    \"PharoGraphs, chapter 7: Tarjan''s strongly connected components.\"\n    nodes := #( $A $B $C $D $E $F ).\n    edges := #(\n        #( $A $B )\n        #( $B $C )\n        #( $C $A )   \"A-B-C forms an SCC\"\n        #( $B $D )\n        #( $D $E )\n        #( $E $D )   \"D-E forms an SCC\"\n        #( $E $F )\n    ).\n    algo := AITarjan new.\n    algo\n        nodes: nodes;\n        edges: edges from: #first to: #second.\n    ^ algo stronglyConnectedComponents\n        \"returns #( #( $A $B $C ) #( $D $E ) #( $F ) ) (order may vary)\"'\n    classified: 'examples - scc'.\n```\n\n```smalltalk\n\"H) HITS link analysis on a toy web graph (chapter 8)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\nhitsToyWebGraph\n    <gtExample>\n    | hits nodes edges |\n    \"PharoGraphs, chapter 8: HITS (hubs & authorities).\"\n    nodes := #( #a #b #c #d ).  \"pages\"\n    edges := #(\n        #( #a #b )\n        #( #a #c )\n        #( #b #c )\n        #( #c #d )\n    ).\n    hits := AIHits new.\n    hits\n        nodes: nodes;\n        edges: edges from: #first to: #second.\n    hits run.\n    ^ hits nodes collect: [ :node |\n        { node model. node hub. node auth } ]'\n    classified: 'examples - hits'.\n```\n\n```smalltalk\n\"I) Greedy matching on a small bipartite graph (chapter 9)\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\ngreedyMatchingExample\n    <gtExample>\n    | algo nodes edges matching |\n    \"PharoGraphs, chapter 9: greedy matching.\n     U = {a1,a2}, V = {b1,b2,b3}.\"\n    nodes := #( #a1 #a2 #b1 #b2 #b3 ).\n    edges := #(\n        #( #a1 #b1 )\n        #( #a1 #b2 )\n        #( #a2 #b2 )\n        #( #a2 #b3 )\n    ).\n    algo := AIGreedyMatching new.\n    algo\n        nodes: nodes;\n        edges: edges from: #first to: #second.\n    matching := algo run.  \"collection of AIGraphEdge\"\n    ^ matching collect: [ :e |\n        { e from model. e to model } ]'\n    classified: 'examples - matching'.\n```\n\n```smalltalk\n\"J) SOM-flavoured grid graph – bridge into the som project\"\n\nAIGraphAlgorithmsGtExamples class\n    compile: '\nsomLikeGridGraph\n    <gtExample>\n    | g |\n    \"Bridge to the som project: a 2D grid graph that can be read as\n     a Kohonen map lattice (each node = a unit, edges = neighbours).\n     Uses AIGrid2DGenerator''s existing example API.\"\n    g := AIGrid2DGenerator new\n        width: 10;\n        height: 10;\n        neighborhood: #moore;\n        yourself.\n    g run.\n    \"Return nodes + edges as a tuple-like array for exploration or\n     for feeding a KohonenSom or GT view later.\"\n    ^ { g nodes. g edges }'\n    classified: 'examples - som bridge'.\n```\n\n---\n\n### How to use these in GT\n\n* After evaluating the do-its:\n\n  * Open the **Examples** browser.\n  * Filter by class: `AIGraphAlgorithmsGtExamples`.\n* Each method is a `<gtExample>`:\n\n  * `basicUnweightedGraph` / `basicWeightedGraph` → directly mirror Ch. 3.\n  * `topologicalSortModules` → Ch. 4.\n  * `bfsShortestPathExample` / `dijkstraShortestPathExample` → Ch. 5.\n  * `kruskalMstExample` → Ch. 6.\n  * `tarjanSccExample` → Ch. 7.\n  * `hitsToyWebGraph` → Ch. 8.\n  * `greedyMatchingExample` → Ch. 9.\n  * `somLikeGridGraph` → **feeds directly into your SOM work** (same style of grid as a SOM lattice).\n\nIf you’d like, next step I can help you:\n\n* Wrap `somLikeGridGraph` into a **KohonenSom**-aware example (`KohonenSom class >> gtExampleGridFromAIGraphAlgorithms`) and\n* Hook these examples into your **gt-curriculum** Lepiter pages as “Graph Algorithms → Basic SOM” prerequisites.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-17T17:46:47.756689+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-17T17:46:47.756689+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "How graph-algorithms relates to the som project"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "6d557cd2-2e00-0e00-be42-d48f0fb9faf4"
+	}
+}
