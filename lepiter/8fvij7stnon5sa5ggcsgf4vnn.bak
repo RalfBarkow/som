@@ -108,7 +108,7 @@
 								"__type" : "time",
 								"time" : {
 									"__type" : "dateAndTime",
-									"dateAndTimeString" : "2025-11-16T22:05:20.537532+01:00"
+									"dateAndTimeString" : "2025-11-16T22:05:26.52941+01:00"
 								}
 							},
 							"uid" : {
@@ -118,7 +118,7 @@
 							"paragraphStyle" : {
 								"__type" : "textStyle"
 							},
-							"string" : "Before you can visualize SOMs (weights, input space, neighborhood evolution), you must understand **GT’s Plotter** because:\n\n* Plotter = GT’s “visual grammar” for charts.\n* KohonenSom visualizations are nothing but **data groups + mappings** (weights) sent to Plotter builders (scatter plots, bar charts, timelines, line charts).\n* To visualize SOM weights in 2D, you are literally doing:\n  **“Plotter scatter of {each weight vector projected to 2D}.”**\n\nThis is structurally identical to {{gtMethod:GtPlotterHorizontalBarChartExamples>>#sequoiaSearchResults`.\n"
+							"string" : "Before you can visualize SOMs (weights, input space, neighborhood evolution), you must understand **GT’s Plotter** because:\n\n* Plotter = GT’s “visual grammar” for charts.\n* KohonenSom visualizations are nothing but **data groups + mappings** (weights) sent to Plotter builders (scatter plots, bar charts, timelines, line charts).\n* To visualize SOM weights in 2D, you are literally doing:\n  **“Plotter scatter of {each weight vector projected to 2D}.”**\n\nThis is structurally identical to {{gtMethod:GtPlotterHorizontalBarChartExamples>>#sequoiaSearchResults}}.\n"
 						}
 					]
 				},

@@ -1,0 +1,188 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-17T06:49:59.884634+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-17T06:50:08.003651+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "je+dpyUADgCGtRcmCOsuBg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Selector: {{gtMethod:KohonenSom>>#gtWeights2DOn:}}"
+						},
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-17T06:56:01.210634+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-17T06:56:05.949497+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "O1UnvSUADgCI3F7cCOsuBg=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "Book: {{gtPage:Drawing graphs with Mondrian by example|db=2j9m7db2i4oz116bexd7wbdxo}}"
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T06:49:02.248118+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T06:49:31.536796+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DnwupCUADgCGHpo1COsuBg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:KohonenSom}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T06:48:35.333005+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-17T06:58:06.63109+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "VciToiUADgCGGDCwCOsuBg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Short answer: we don’t *have* a 2D plot yet 🙂[chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691a3b1f-5fc8-8331-85b0-80064b596093)\nEverything you and I wrote so far gives you\n\n* a table view (`gtWeightsOn:`), and\n* some broken Mondrian / Plotter experiments.\n\nSo the missing “view that shows a 2D plot” is exactly the method we now have to add, e.g.\n\n```smalltalk\nKohonenSom>>gtWeights2DOn: aView\n    <gtView>\n    ^ aView mondrian\n        title: 'Weights (Input Space, 2D)';\n        painting: [ :m |\n            \"self weightsAsPoints2D should answer a collection of Points\"\n            m nodes\n                stencil: [ :p |\n                    BlElement new\n                        geometry: BlEllipseGeometry new;\n                        size: 4 @ 4;\n                        background: Color blue ];\n                with: self weightsAsPoints2D.\n            \"For a first working version, just use a built-in layout\"\n            m layout circle radius: 50 ]\n```\n\nA few important points:\n\n1. **Where this lives**\n\n   * Class: `KohonenSom`\n   * Selector: `gtWeights2DOn:`\n   * Responsibility: provide a Mondrian view using your existing `weightsAsPoints2D` (the points in input space).\n\n2. **Why this should actually render**\n\n   * The API above is taken directly from the Mondrian tutorial in the GT book (`nodesWithEllipses`, `m nodes … stencil: … with: …`, `m layout circle`). ([gtoolkit book][1])\n   * No custom node/layout builders, no `custom`, no `translate:` — just the documented, working slice of the API.\n\n3. **What you’ll see**\n\n   * When you inspect a `KohonenSom` and pick *Weights (Input Space, 2D)*, you should get a simple scatter of blue dots arranged in a circle.\n   * The positions are *not yet* the real x/y coordinates – the circle layout ignores your `Point`s. But it confirms that:\n\n     * `weightsAsPoints2D` returns something sensible,\n     * Mondrian setup is correct,\n     * the gtView wiring works.\n\n4. **Next step towards a *true* 2D embedding**\n\n   Once you have this working, the “real” 2D view is:\n\n   * keep the same `gtWeights2DOn:` skeleton,\n   * replace `m layout circle` with a custom layout that reads the `Point` model and sets each element’s position. That part **does** need some experimentation inside your image, following the “Drawing graphs with Mondrian by example” page (section on layouts & stencils). ([gtoolkit book][1])\n\nSo the honest answer to “where is the view that shows a 2D plot?” is:\n\n> It doesn’t exist yet; the place to put it is {{gtMethod:KohonenSom>>gtWeights2DOn:}}, and the minimal, known-good Mondrian code above will get you an actual rendering you can iterate from.\n\n[1]: https://book.gtoolkit.com/drawing-graphs-with-mondrian-by-example-b85ad06jfk8gmhvjj8q7poyfc \"Drawing graphs with Mondrian by example\"\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-17T06:55:38.900061+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-17T06:55:38.900061+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Next step towards a true 2D embedding\n"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "0b8293a2-2500-0e00-8617-b7f808eb2e06"
+	}
+}

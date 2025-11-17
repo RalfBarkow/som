@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T23:02:03.662734+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T23:02:06.12529+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IsokHh8ADgC7eXZ6Cw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "You’re absolutely right to call me out on the guessing – thanks for that.\nLet’s stop inventing APIs and **only use what we *know* exists** in your image:\n\n* The exact Plotter API from\n  `GtPlotterHorizontalBarChartExamples>>sequoiaSearchResults`\n\nNo `xData:`, no scatter classes, no fancy layouts, no `isKindOf:` tricks.\n\nWe’ll build a tiny **horizontal bar chart** for a collection of `Point`s, using only:\n\n* `GtPlotterDataGroup`\n* `labelled:`\n* `background:`\n* `inject:intoValues:`\n* `GtPlotterLinearScale new domainFrom:to:`\n* `GtPlotterHorizontalBarChart`\n* `barLabelSpacing:`\n* `barWidthScale:`\n* `barWidthData:`\n* `amountOfTicks:`\n* `with:`\n\n…and nothing else.\n\n---\n\n## 1. Put the helper on `Array` (no abstract Collection involved)\n\nDefine this **exactly** on `Array` (class: `Array`, protocol whatever you like):\n\n```smalltalk\nArray>>asGtPlotterInputSpaceChart\n    <gtExample>\n    <return: #GtPlotterHorizontalBarChart>\n    | records theData maxX xScale chart |\n\n    \"Assume self is an Array of Points (x@y).\"\n    self isEmpty ifTrue: [ ^ GtPlotterHorizontalBarChart new ].\n\n    \"Step 1: turn points into small dictionaries with #index and #x/#y.\"\n    records := OrderedCollection new.\n    1 to: self size do: [ :idx |\n        | p |\n        p := self at: idx.\n        records add: (Dictionary newFrom: {\n            #index -> idx.\n            #x     -> p x.\n            #y     -> p y }) ].\n\n    \"Step 2: GtPlotterDataGroup like sequoiaSearchResults.\"\n    theData := GtPlotterDataGroup new values: records.\n\n    theData := theData\n        labelled: [ :each | 'p', (each at: #index) asString ].\n\n    theData := theData\n        background: [ :each |\n            \"For now, just use a single colour (we *could* use #y if wanted).\"\n            Color\n                r: 66\n                g: 188\n                b: 238\n                range: 255 ].\n\n    \"Step 3: same scale pattern as sequoiaSearchResults.\"\n    maxX := theData\n        inject: 0\n        intoValues: [ :currentMax :each |\n            currentMax max: (each at: #x) ].\n\n    xScale := GtPlotterLinearScale new\n        domainFrom: 0\n        to: maxX.\n\n    \"Step 4: build the bar chart using only known selectors.\"\n    chart := GtPlotterHorizontalBarChart new.\n    chart\n        barLabelSpacing: 50;\n        barWidthScale: xScale;\n        barWidthData: [ :each | each at: #x ];\n        amountOfTicks: 4;\n        with: theData.\n\n    ^ chart\n```\n\nThis is deliberately boring and conservative:\n\n* no `collectWithIndex:`\n* no type checks\n* no other classes than those you *already showed* in `sequoiaSearchResults`.\n\n### Test it **before** wiring any `gtView`\n\nIn a playground:\n\n```smalltalk\n#( 10@10 50@20 30@80 ) asGtPlotterInputSpaceChart\n```\n\nEvaluate and inspect the result. You should see a **horizontal bar chart** with three bars:\n\n* bar lengths: 10, 50, 30 (x-coordinates)\n* labels: `p1`, `p2`, `p3`\n\nIf you see *any* error here, the top frame will tell us exactly which message is missing, and it’ll be from **this method only**, which we can then fix deterministically (no guessing).\n\n---\n\n## 2. Hook it into the inspector (optional, but likely what you want)\n\nOnce the helper works, you can wire your `Collection>>gtScatter2DOn:` like this:\n\n```smalltalk\nArray>>gtScatter2DOn: aView\n    <gtView>\n    ^ aView forward\n        title: '2D Input Space';\n        object: [ self asGtPlotterInputSpaceChart ];\n        view: #gtInspectorViewFor:context:\n```\n\nAgain: **put this on `Array`**, not `Collection`. That completely avoids the `Collection had the subclass responsibility to implement #do:` trap.\n\nThen:\n\n```smalltalk\n#( 10@10 50@20 30@80 ) inspect\n```\n\nChoose **2D Input Space** → you get the same bar chart, now as a GT view.\n\n---\n\n## 3. How this relates back to SOM\n\nFor SOM:\n\n* `weightsAsPoints2D` should produce an `Array` of `Point`s.\n* You can reuse the same helper:\n\n```smalltalk\nKohonenSom>>gtWeights2DOn: aView\n    <gtView>\n    ^ aView forward\n        title: 'Weights (Input Space, 1D-projected)';\n        object: [ self weightsAsPoints2D asGtPlotterInputSpaceChart ];\n        view: #gtInspectorViewFor:context:\n```\n\nThis gives you at least a **stable Plotter-based visualization** of weights vs. neuron index along one dimension, using only APIs we’re certain exist.\n\nIf you’re up for it, the next step *after this is confirmed working* is to look in your image for a Plotter class that does genuine 2D coordinates (scatter/point/cartesian) and adjust the chart-building method accordingly — but that will be done by *inspecting the classes in your image*, not by me free-styling new selectors.\n\nFor now, the goal is: **no more abstract Collection errors, no more missing messages, only code built from the sequoia example.**\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T23:03:01.188521+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T23:03:01.188521+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : " Put the helper on Array (no abstract Collection involved)"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "3dc0241e-1f00-0e00-bb78-5dc90b0f948e"
+	}
+}

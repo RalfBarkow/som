@@ -1,0 +1,221 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:53:39.378175+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:53:51.337809+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "x+bF/x4ADgC6QRLVCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtMethod:Collection>>#gtScatter2DOn:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:54:35.051266+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:54:35.051266+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Nn9nAx8ADgC6+sg0Cw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Yep, fair point – if `xData:` / `yData:` don’t exist in your Plotter, I shouldn’t keep guessing chart APIs.\n\nLet’s **fall back to the API you *do* have**, i.e. the one from\n`GtPlotterHorizontalBarChartExamples>>sequoiaSearchResults`, and use that to get *something working* for the input space.\n\nWe’ll represent each point as a tiny record with `#x` and `#y`, and then build a **horizontal bar chart** that shows the **x-coordinate** as bar length and uses the **y-coordinate** for coloring. It’s not a full scatter yet, but it:\n\n* uses only selectors we know you have (`barWidthData:`, `barWidthScale:`, etc.), and\n* gives you a concrete Plotter view of the input space to hook into SOM views.\n\n---\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:54:30.87323+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:54:35.061304+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "wr4nAx8ADgC6805oCw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 1. Turn a collection of Points into a Plotter chart\n\n```smalltalk\nCollection>>asGtPlotterInputSpaceChart\n    <gtExample>\n    <return: #GtPlotterHorizontalBarChart>\n    | points theData maxX xScale chart |\n\n    points := self asArray.\n    points isEmpty ifTrue: [ ^ GtPlotterHorizontalBarChart new ].\n\n    \"Wrap each Point into a small dictionary with #index, #x, #y\"\n    theData := GtPlotterDataGroup new\n        values: (points collectWithIndex: [ :p :index |\n            Dictionary newFrom: {\n                #index -> index.\n                #x     -> p x.\n                #y     -> p y } ]).\n\n    \"Labels: p1, p2, ...\"\n    theData := theData\n        labelled: [ :each | 'p', (each at: #index) asString ].\n\n    \"Color based on y (just to use the second dimension somehow)\"\n    theData := theData\n        background: [ :each |\n            | y |\n            y := each at: #y.\n            y > 0\n                ifTrue: [ Color r: 66 g: 188 b: 238 range: 255 ]\n                ifFalse: [ Color r: 216 g: 55 b: 62 range: 255 ] ].\n\n    \"Scale the bar width from 0 .. max x\"\n    maxX := theData\n        inject: 0\n        intoValues: [ :max :each | max max: (each at: #x) ].\n\n    xScale := GtPlotterLinearScale new\n        domainFrom: 0\n        to: maxX.\n\n    chart := GtPlotterHorizontalBarChart new.\n    chart\n        barLabelSpacing: 50;\n        barWidthScale: xScale;\n        barWidthData: [ :each | each at: #x ];\n        amountOfTicks: 4;\n        with: theData.\n\n    ^ chart\n```\n\nThis uses exactly the same pattern as `sequoiaSearchResults`:\n\n* `GtPlotterDataGroup new values: ...`\n* `labelled:`\n* `background:`\n* `inject:intoValues:`\n* `GtPlotterLinearScale`\n* `barWidthScale:`\n* `barWidthData:`\n* `with:`\n\nSo it should compile and run in your image.\n\nYou can try it directly:\n\n```smalltalk\n{ 10@10 . 50@20 . 30@80 } asGtPlotterInputSpaceChart\n```\n\n---\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:47:23.302607+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:54:30.890917+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ux196R4ADgC4M/y5Cw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 2. Wire it into the inspector view\n\n```smalltalk\nCollection>>gtScatter2DOn: aView\n    <gtView>\n    ^ aView forward\n        title: '2D Input Space';\n        object: [ self asGtPlotterInputSpaceChart ];\n        view: #gtInspectorViewFor:context:\n```\n\n(If `#gtInspectorViewFor:context:` is not known, copy whichever view selector is used for `sequoiaSearchResults` – the pattern is the same.)\n\nNow:\n\n```smalltalk\n{ 10@10 . 50@20 . 30@80 } inspect\n```\n\nand choose **2D Input Space** → you should at least see a **horizontal bar chart**:\n\n* each bar = one point\n* bar length = x-coordinate\n* bar color = based on y-coordinate\n\nFrom there, once we’ve got a stable Plotter chart working in *your* version, we can iterate to a real scatter (either by finding the right scatter builder in your image or by layering Bloc on top of this). But this gives you a concrete, working Plotter-based visualization using only the API we *know* is present.\n"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:49:11.907155+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:49:14.664851+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "gbsk8B4ADgC5og5jCw+Ujg=="
+				},
+				"code" : "{ 10@10. 50@20. 30@80 } asGtPlotter2DScatter"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:47:39.190472+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:47:39.190472+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Turn a collection of Points into a Plotter chart"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "29157de9-1e00-0e00-b832-d3140b0f948e"
+	}
+}

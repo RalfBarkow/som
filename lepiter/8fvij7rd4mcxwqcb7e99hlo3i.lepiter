@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:40:23.441646+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T22:40:25.344756+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "YP2k0B4ADgCp9v09Cw+Ujg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "You’re right, the Mondrian / Bloc detour is not helping.\nLet’s **stop that** and do it exactly the way `sequoiaSearchResults` does: with **Plotter only**.\n\n---\n\n## 1. Make a Plotter-based 2D scatter for a `Collection` of `Point`s\n\nAnalogous to `sequoiaSearchResults`, we first write a method that **returns a chart**:\n\n```smalltalk\nCollection>>asGtPlotter2DScatter\n    <gtExample>\n    <return: #GtPlotterScatterChart>  \"adjust if your class name differs\"\n    | theData xMax yMax xScale yScale chart |\n\n    \"Assume self is a collection of Points\"\n    self isEmpty ifTrue: [ ^ GtPlotterScatterChart new ].\n\n    theData := GtPlotterDataGroup new values: self.\n    theData := theData labelled: [ :p | p printString ].\n\n    xMax := self inject: 0 into: [ :max :p | max max: p x ].\n    yMax := self inject: 0 into: [ :max :p | max max: p y ].\n\n    xScale := GtPlotterLinearScale new\n        domainFrom: 0\n        to: xMax.\n\n    yScale := GtPlotterLinearScale new\n        domainFrom: 0\n        to: yMax.\n\n    chart := GtPlotterScatterChart new.\n    chart\n        xScale: xScale;\n        yScale: yScale;\n        xData: [ :p | p x ];\n        yData: [ :p | p y ];\n        with: theData.\n\n    ^ chart\n```\n\nNotes:\n\n* This mirrors `sequoiaSearchResults`:\n\n  * build `GtPlotterDataGroup`\n  * compute max values → `GtPlotterLinearScale`\n  * configure chart with data blocks\n  * `with:` the data group\n* If your image doesn’t have `GtPlotterScatterChart`, look in the browser for classes next to `GtPlotterHorizontalBarChart` (e.g. `GtPlotterPointChart` / `GtPlotterCartesianChart`) and swap the class + `xData:/yData:` selectors accordingly. The pattern stays identical.\n\nYou can already test this directly:\n\n```smalltalk\n{ 10@10. 50@20. 30@80 } asGtPlotter2DScatter\n```\n\nand inspect the result.\n\n---\n\n## 2. Wire it into a GT view (`gtScatter2DOn:`)\n\nNow hook this chart into the inspector, the same way the JSON view does it:\n\n```smalltalk\nCollection>>gtScatter2DOn: aView\n    <gtView>\n    ^ aView forward\n        title: '2D Input Space';\n        object: [ self asGtPlotter2DScatter ];\n        view: #gtInspectorViewFor:context:\n```\n\n(If your GT doesn’t know `#gtInspectorViewFor:context:`, pick any of the view symbols used in `GtPlotterHorizontalBarChartExamples` — e.g. open `sequoiaSearchResults`, press ⌘+N on the example result and see which view method it uses; plug that selector in instead.)\n\nNow:\n\n```smalltalk\n{ 10@10 . 50@20 . 30@80 } inspect\n```\n\nand choose **2D Input Space** → you should get a Plotter scatter: three dots at the appropriate coordinates, scaled to the chart.\n\n---\n\nOnce this works, you can copy the exact same pattern for:\n\n```smalltalk\nKohonenSom>>gtWeights2DOn: aView\n    <gtView>\n    ^ aView forward\n        title: 'Weights (2D)';\n        object: [ self weightsAsPoints2D asGtPlotter2DScatter ];\n        view: #gtInspectorViewFor:context:\n```\n\n(where `asGtPlotter2DScatter` lives on `Collection` as above).\n\nThat keeps everything in the **Plotter world**, exactly like `sequoiaSearchResults`, and avoids the Mondrian/Bloc version-mismatch headaches.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:41:02.098791+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T22:41:02.098791+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Make a Plotter-based 2D scatter for a Collection of Points"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "3ef2a4d0-1e00-0e00-a9f5-63ad0b0f948e"
+	}
+}

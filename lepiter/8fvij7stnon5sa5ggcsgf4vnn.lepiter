@@ -18,7 +18,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-16T22:01:12.837918+01:00"
+						"dateAndTimeString" : "2025-11-16T22:34:40.822583+01:00"
 					}
 				},
 				"editEmail" : {
@@ -29,17 +29,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-16T22:01:12.837918+01:00"
+						"dateAndTimeString" : "2025-11-16T22:34:40.822583+01:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "CJmJRB4ADgCneVRgCw+Ujg=="
+					"uidString" : "rgI5vB4ADgCpQ5zGCw+Ujg=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Below is a **clean, concrete learning-path** inside Glamorous Toolkit that takes a newcomer from:\n\n**Plotter → understanding GtPlotterDataGroup → building simple 2D point views → → GT views for KohonenSom (#gtWeightsOn:, #gtWeights2DOn:) → → visualizing input space and SOM weights.**\n\nNo theory detours, no extra distractions.\nEverything is phrased so you can directly turn it into GT-Curriculum lessons (Newcomer profile). [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691a3b1f-5fc8-8331-85b0-80064b596093)\n\n---\n"
+				"string" : "Below is a **clean, concrete learning-path** inside Glamorous Toolkit that takes a newcomer from:\n\n**Plotter → understanding GtPlotterDataGroup → building simple 2D point views → → GT views for KohonenSom (#gtWeightsOn:, #gtWeights2DOn:) → → visualizing input space and SOM weights.**\n\nNo theory detours, no extra distractions.\nEverything is phrased so you can directly turn it into GT-Curriculum lessons (Newcomer profile). [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691a3b1f-5fc8-8331-85b0-80064b596093)\n"
 			},
 			{
 				"__type" : "textSnippet",
