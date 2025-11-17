@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T13:21:13.738044+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T13:21:22.962491+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "lSPtABcADgChSRNMCOSfOg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtMethod:KohonenSom>>#initializeWithInputDimension:width:height:iterations:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T13:20:23.716766+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-16T13:20:25.699234+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "69/x/RYADgChQ/rbCOSfOg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "`Float class >> ln:` **does not exist in Pharo.**\nThe correct message is sent to **instances**, not the class:\n\n* **correct:** `5.0 ln`\n* **wrong:** `Float ln: 5.0`\n\nThis error was caused by this line in your SOM implementation:\n\n```smalltalk\nradiusTimeConstant := maxIterations asFloat / (Float ln: initialRadius).\n```\n\n### ✅ Fix\n\nReplace it with:\n\n```smalltalk\nradiusTimeConstant := maxIterations asFloat / initialRadius ln.\n```\n\n### Do-it patch (pharo-code-emitter-ready)\n\n```smalltalk\nKohonenSom compile: '\ninitializeWithInputDimension: anInteger width: aWidth height: aHeight iterations: totalIterations\n    inputDimension := anInteger.\n    width := aWidth.\n    height := aHeight.\n    maxIterations := totalIterations.\n    iterationCount := 0.\n    initialLearningRate := 0.1.\n    initialRadius := (width max: height) / 2.0.\n    learningTimeConstant := maxIterations asFloat / 2.0.\n    radiusTimeConstant := maxIterations asFloat / (initialRadius ln).\n    self initializeRandomWeights.\n    ^ self'\nclassified: 'initialization'.\n```\n\n### Why\n\n`Float>>ln` is an instance method:\n\n```smalltalk\n5 ln        \"works\"\nFloat ln: 5 \"does not exist → MessageNotUnderstood\"\n```\n\nYour GT examples will pass as soon as this patch is applied.\n\nIf you want, I can now also run through the *entire* SOM initialization/training code and check for other Pharo-specific numeric pitfalls (`raisedTo:`, float coercions, division, etc.).\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T13:20:47.47252+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-16T13:20:47.47252+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "initializeWithInputDimension:width:height:iterations:"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "b0dbf1fd-1600-0e00-a142-9aff08e49f3a"
+	}
+}

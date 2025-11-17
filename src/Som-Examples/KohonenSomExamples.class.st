@@ -18,22 +18,24 @@ KohonenSomExamples class >> exampleInputSpace2D [
 
 { #category : #examples }
 KohonenSomExamples class >> exampleUnitSquare2D [
-    <gtExample>
-    "Train a small SOM on random points in the unit square."
-    
-    | data som numberOfSamples |
-    numberOfSamples := 500.
-    data := (1 to: numberOfSamples) collect: [ :i |
-        { Random new next. Random new next } asArray ].
-    
-    som := KohonenSom new
-        initializeWithInputDimension: 2
-        width: 10
-        height: 10
-        iterations: 2000.
-    
-    som trainOn: data.
-    ^ som
+	"Train a small SOM on random points in the unit square."
+
+	<gtExample>
+	| data som numberOfSamples |
+	numberOfSamples := 500.
+	data := (1 to: numberOfSamples)
+			collect: [ :i | 
+				{Random new next.
+					Random new next} asArray ].
+
+	som := KohonenSom new
+			initializeWithInputDimension: 2
+			width: 10
+			height: 10
+			iterations: 2000.
+
+	som trainOn: data.
+	^ som
 ]
 
 { #category : #examples }

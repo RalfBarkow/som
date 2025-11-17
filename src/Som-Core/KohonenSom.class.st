@@ -11,7 +11,8 @@ Class {
 		'initialLearningRate',
 		'initialRadius',
 		'learningTimeConstant',
-		'radiusTimeConstant'
+		'radiusTimeConstant',
+		'zoomFactor'
 	],
 	#category : #'Som-Core'
 }
@@ -64,6 +65,34 @@ KohonenSom >> gtJsonFor: aView [
 		view: #gtJsonObjectFor:context:
 ]
 
+{ #category : #'as yet unclassified' }
+KohonenSom >> gtWeightVectorsInInputSpaceOn: aView [
+	<gtView>
+	^ aView explicit
+		title: 'Codebook Scatter';
+		stencil: [ :presentation | 
+			| root scaledPoints |
+			root := BlElement new
+					size: 600 @ 600;
+					background: Color white;
+					yourself.
+
+			scaledPoints := self weightsAsPoints2DScaledBy: self zoomFactor.
+
+			scaledPoints
+				do: [ :p "p is a scaled Point in pixel space" | 
+					| dot |
+					dot := BlElement new
+							size: 12 @ 12;
+							geometry: BlEllipseGeometry new;
+							background: Color blue;
+							relocate: p;
+							yourself.
+					root addChild: dot ].
+
+			root ]
+]
+
 { #category : #'gt-views' }
 KohonenSom >> gtWeights2DOn: aView [
 	<gtView>
@@ -86,6 +115,16 @@ KohonenSom >> gtWeightsOn: aView [
 	^ aView forward
 		title: 'Weights';
 		object: [ weights ]
+]
+
+{ #category : #'as yet unclassified' }
+KohonenSom >> gtZoomOn: aView [
+    <gtView>
+    ^ aView text
+        title: 'Zoom factor';
+        priority: 5;
+        text: [ self zoomFactor asString ]
+
 ]
 
 { #category : #accessing }
@@ -168,6 +207,41 @@ KohonenSom >> radiusAtTime: t [
     ^ initialRadius * (Float e raisedTo: (t negated / radiusTimeConstant))
 ]
 
+{ #category : #'as yet unclassified' }
+KohonenSom >> scaledWeightsAsPoints2DForCanvas: canvasExtent [
+	"Return points scaled so that *all* weightsAsPoints2D fit
+	 into a rectangle 0@0 corner: canvasExtent, with a small margin."
+
+	| pts minX maxX minY maxY spanX spanY scaleX scaleY margin |
+
+	pts := self weightsAsPoints2D.
+	pts isEmpty ifTrue: [ ^ #() ].
+
+	"Find bounding box in input space"
+	minX := maxX := pts first x.
+	minY := maxY := pts first y.
+	pts do: [ :p |
+		minX := minX min: p x.
+		maxX := maxX max: p x.
+		minY := minY min: p y.
+		maxY := maxY max: p y ].
+
+	spanX := (maxX - minX) max: 1e-6.
+	spanY := (maxY - minY) max: 1e-6.
+
+	margin := 10.  "pixels"
+
+	scaleX := (canvasExtent x - (2 * margin)) / spanX.
+	scaleY := (canvasExtent y - (2 * margin)) / spanY.
+
+	^ pts collect: [ :p |
+		| nx ny |
+		nx := margin + (p x - minX) * scaleX.
+		ny := margin + (p y - minY) * scaleY.
+		nx @ ny ]
+
+]
+
 { #category : #'batch-training' }
 KohonenSom >> trainBatchOn: aCollection iterations: batchIterations [
     "Skeleton for the Batch Map algorithm (Sec. 3.14).
@@ -245,7 +319,29 @@ KohonenSom >> weightsAsPoints2D [
             ifFalse: [ 0 @ 0 ] ]
 ]
 
+{ #category : #'as yet unclassified' }
+KohonenSom >> weightsAsPoints2DScaledBy: factor [
+	"Simple zoom: multiply all coordinates by a scalar.
+     Assumes weightsAsPoints2D answers Points (x@y)."
+
+	| pts |
+	pts := self weightsAsPoints2D.
+	pts isEmpty ifTrue: [ ^ #() ].
+
+	^ pts collect: [ :p | p * factor ]
+]
+
 { #category : #accessing }
 KohonenSom >> width [
     ^ width
+]
+
+{ #category : #accessing }
+KohonenSom >> zoomFactor [
+	^ zoomFactor ifNil: [  "default zoom"zoomFactor := 600.0 ]
+]
+
+{ #category : #accessing }
+KohonenSom >> zoomFactor: aNumber [
+	zoomFactor := (aNumber max: 0.01) asFloat	"avoid zero / negative"
 ]
