@@ -94,22 +94,6 @@ KohonenSom >> gtWeightVectorsInInputSpaceOn: aView [
 ]
 
 { #category : #'gt-views' }
-KohonenSom >> gtWeights2DOn: aView [
-	<gtView>
-	^ aView mondrian
-		title: 'Weights (Input Space, 2D)';
-		painting: [ :m "self weightsAsPoints2D should answer a collection of Points" | 
-			m nodes
-				stencil: [ :p | 
-					BlElement new
-						geometry: BlEllipseGeometry new;
-						size: 4 @ 4;
-						background: Color blue ];
-				with: self weightsAsPoints2D.	"For a first working version, just use a built-in layout"
-			m layout circle radius: 50 ]
-]
-
-{ #category : #'gt-views' }
 KohonenSom >> gtWeightsOn: aView [
 	<gtView>
 	^ aView forward
