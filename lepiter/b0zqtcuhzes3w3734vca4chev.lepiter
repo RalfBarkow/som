@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:35:52.210804+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:35:53.973908+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vFH4cD8ADgC3mPdZD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "A **weight** in a Self-Organizing Map is **one neuron’s reference vector** in the input space.\n\nSo the *shape* of a weight vector is **exactly the shape of an input sample**.\n\n---\n\n# ✅ 1. In your current SOM (2D input), a weight looks like:\n\n```\n#( 0.1234  0.8791 )\n```\n\ni.e. an **Array of 2 Floats**.\n\nThis is why your scatter plot works: you take the first two components and treat them as **x and y**.\n\n---\n\n# ✅ 2. In general, the shape of a weight vector is:\n\n```\n#( w1 w2 w3 ... wn )\n```\n\n### where:\n\n* `n = inputDimension`\n* each element `wi` is a Float\n* the entire vector is the neuron’s “location” in the *input space*\n\n---\n\n# 📐 3. More explicitly — weight shapes in different SOM configurations\n\n### **If inputDimension = 2**\n\nUsed for simple demos and book illustrations:\n\n```\n#( 0.53  0.12 )\n```\n\nScatter plots directly.\n\n---\n\n### **If inputDimension = 3 (e.g., RGB clustering)**\n\n```\n#( 0.21  0.78  0.04 )\n```\n\nCould be visualized as colors or 3D scatter.\n\n---\n\n### **If inputDimension = 13 (MFCC speech features)**\n\n```\n#( 12.3  -1.0  3.7  8.2  0.55  -0.43  1.9  ...  )\n```\n\nNot visually scatterable → you’d need:\n\n* parallel coordinate plots\n* heatmaps\n* GT tabular views\n\n---\n\n### **If inputDimension = 784 (flattened 28×28 MNIST image)**\n\n```\n#( 0.0 0.0 0.0 0.12 0.9 0.1 ... 784 numbers ... )\n```\n\nThe reference vector is literally a **prototypical digit image**.\nWeight vector can be reshaped into (28×28) for visualization.\n\n---\n\n# 📦 4. In your `SomReferenceVector`\n\nRight now, the `weight` slot contains *exactly* what your SOM uses:\n\n```smalltalk\nweight := #( w1 w2 ).\n```\n\nWhen your SOM eventually grows to more dimensions, `weight:` is already general enough to hold any-length vector.\n\n---\n\n# 🎓 5. In Kohonen’s terminology\n\nThis object is the **model vector**, **codebook vector**, or **reference vector**.\n\nShape is always:\n\n```\ninputDimension-dimensional point\n```\n\nFor your current curriculum:\n\n> **The full weight vector is a 2D point in the unit square.**\n\nThey are the \"moving prototypes\" that eventually settle into the curved grid seen in Kohonen Fig. 3.6.\n\n---\n\n# If you want, I can also:\n\n* show how **weights evolve over iterations** (GT animation),\n* visualize **weight movement trajectories**,\n* reshape high-dimensional weights (e.g. MNIST) into **images**, or\n* provide GT views for any weight shape.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:36:37.78688+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:36:37.78688+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "In your current SOM (2D input), a weight looks like:"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "274ff870-3f00-0e00-b797-f37a0fe344ba"
+	}
+}

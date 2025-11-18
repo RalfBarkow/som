@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:53:51.066491+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:54:15.92369+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "qFlGsT8ADgC5DHmPD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:SomReferenceVector}} and {{gtMethod:SomReferenceVector>>#gtImageOn:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:52:47.693397+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:52:49.329079+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "oFp/rT8ADgC5BjsWD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "You *are* getting a view – it’s just a **1×1 white pixel**, so it looks like “nothing”. 🙂\n\nLook at your debugger screenshot on the previous error:\n`form` was `Form(1x1x32)`. That’s because:\n\n```smalltalk\nn := weight size sqrt rounded.\n```\n\nFor your current SOM, `weight size = 2` → `sqrt(2) ≈ 1.41` → `rounded = 1` → `Form extent: 1@1`.\n\nSo the view works, but the “image” is literally one tiny white pixel in a big pane.\n\n---\n\n## Step 1 – Verify the view is actually used\n\nTemporarily change `gtImageOn:` to:\n\n```smalltalk\nSomReferenceVector\n    compile: '\ngtImageOn: aView\n    <gtView>\n    ^ aView explicit\n        title: ''Weight image'';\n        stencil: [ :v |\n            BlElement new\n                size: 200@200;\n                background: Color red;\n                yourself ]'\n    classified: 'gt-views'.\n```\n\nIf you now see a **big red square**, the GT plumbing is fine and the problem is just the tiny `Form`.\n\nThen restore `gtImageOn:` to use `imageForm` again.\n\n---\n\n## Step 2 – Inspect the `Form` directly\n\nFrom a playground / inspector:\n\n```smalltalk\nself imageForm inspect.   \"run on a SomReferenceVector\"\n```\n\nYou should see `Form(1x1x32)` – confirming it’s only 1 pixel.\n\n---\n\n## Step 3 – Make it visible (scale the image element)\n\nChange `gtImageOn:` to enlarge the element created from the form:\n\n```smalltalk\nSomReferenceVector\n    compile: '\ngtImageOn: aView\n    <gtView>\n    | form |\n    form := self imageForm.\n    ^ aView explicit\n        title: ''Weight image'';\n        stencil: [ :v |\n            | e |\n            e := form asElement.\n            e size: 200@200.   \"scale up so we can see it\"\n            e ]'\n    classified: ''gt-views''.\n```\n\nNow you should at least see a big **solid gray square** (still only one pixel worth of information, blown up).\n\n---\n\n## Why this happens (and what to do conceptually)\n\n* With your **2D input**, each weight is just `#(x y)`. There is **no real 2D image structure** to show; you only have 2 numbers.\n* The “weight as image” trick only makes sense when `weight size` is something like `16, 25, 64, 256, 784, ...` that can be interpreted as `4×4`, `5×5`, `8×8`, `16×16`, `28×28`, etc.\n\nSo:\n\n* For your current 2D SOM, this view is mostly a **debug toy**.\n* Once you plug in a higher-dimensional SOM (e.g. MNIST, 28×28=784), the same `imageForm` + `gtImageOn:` code will start showing **real prototype images**.\n\nIf you like, I can give you a tiny fake example `SomReferenceVector` with a 10×10 (100-dim) weight so you can see a real checkerboard-style image right now.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:53:47.175915+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:53:47.175915+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Verify the view is actually used"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f7577fad-3f00-0e00-b905-58510fe344ba"
+	}
+}

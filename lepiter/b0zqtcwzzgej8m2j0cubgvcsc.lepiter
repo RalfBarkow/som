@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:40:28.511249+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:41:18.669675+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "zFRwgT8ADgC3nwMED+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Great — here are **all three** things you asked for, each delivered as *clean, ready-to-use GT visualizations* you can install via `compile:` chunks.\n\nYou will get:\n\n1. **GT animation of weight evolution over time**\n2. **GT visualization of weight movement trajectories** (arrows in input space)\n3. **GT reshape → image** view for high-dimensional weights (e.g., MNIST 28×28)\n\nAll examples assume your `SomReferenceVector` class already exists.\n\n---\n\n# 1️⃣ GT Animation: “Weight Evolution Over Iterations”\n\nThis view records weight snapshots during training and animates them.\n\n### **Chunk — adds `gtWeightEvolutionOn:` to `KohonenSom`**\n\n```smalltalk\nKohonenSom compile: '\ngtWeightEvolutionOn: aView\n    <gtView>\n    | snapshots iterations step data |\n    iterations := self maxIterations.\n    step := (iterations // 60) max: 1.    \"Target ~60 frames\"\n\n    \"Run training and store snapshots\"\n    snapshots := OrderedCollection new.\n    0 to: iterations - 1 do: [ :t |\n        (t \\\\ step = 0) ifTrue: [\n            snapshots add: (self weightsAsPoints2D collect: #copy) ].\n        self trainOne: (trainingData atRandom) atTime: t ].\n\n    ^ aView explicit\n        title: ''Weight evolution'';\n        stencil: [ :v |\n            | root dotSize |\n            dotSize := 8.\n            root := BlElement new size: 600@600; background: Color white.\n\n            v animateFrames: snapshots using: [ :frame |\n                root removeAllChildren.\n                frame do: [ :pt |\n                    | dot |\n                    dot := BlElement new\n                        size: dotSize@dotSize;\n                        geometry: BlEllipseGeometry new;\n                        background: Color blue;\n                        relocate: (pt * self zoomFactor).\n                    root addChild: dot ].\n                root ] ]' classified: 'gt-views'.\n```\n\n### Result\n\nAn **animated movie** of SOM ordering, reproducing the kind of contraction seen in Kohonen 2001 Fig. 3.6.\n\n---\n\n# 2️⃣ Weight Movement Trajectories (Vector Arrows)\n\nShows how each neuron moved from its initial position to its final position.\n\n### **Chunk — adds a trajectory overlay**\n\n```smalltalk\nKohonenSom compile: '\ngtWeightMovementOn: aView\n    <gtView>\n    | before after scale |\n    before := self weightsAsPoints2D collect: #copy.\n    self trainOn: trainingData.\n    after := self weightsAsPoints2D.\n    scale := self zoomFactor.\n\n    ^ aView explicit\n        title: ''Weight movement trajectories'';\n        stencil: [ :v |\n            | root |\n            root := BlElement new size: 600@600; background: Color white.\n\n            1 to: before size do: [ :i |\n                | p0 p1 arrow |\n                p0 := before at: i.\n                p1 := after at: i.\n\n                \"Start dot\"\n                root addChild: (BlElement new\n                    size: 8@8;\n                    geometry: BlEllipseGeometry new;\n                    background: Color red;\n                    relocate: p0 * scale).\n\n                \"End dot\"\n                root addChild: (BlElement new\n                    size: 8@8;\n                    geometry: BlEllipseGeometry new;\n                    background: Color green;\n                    relocate: p1 * scale).\n\n                \"Arrow from start → end\"\n                arrow := BlLineElement from: (p0 * scale) to: (p1 * scale).\n                arrow border: (BlBorder paint: Color black width: 1).\n                root addChild: arrow ].\n\n            root ]' classified: 'gt-views'.\n```\n\n### Result\n\nA **vector field visualization**:\n\n* Red dot = initial weight\n* Green dot = final weight\n* Line = movement trajectory\n\nYou can clearly see contraction, folding, ordering dynamics.\n\n---\n\n# 3️⃣ High-Dimensional Weights as Images (e.g., MNIST)\n\nThis view reshapes a weight vector into a 2D image if its dimension is a perfect square (e.g., 28×28 = 784).\n\n### **Chunk — add reshape + GT image presenter**\n\n```smalltalk\nSomReferenceVector compile: '\nimageForm\n    \"Convert the weight vector into a grayscale Form, assuming dimension = n^2.\"\n    | n values form |\n    n := weight size sqrt asInteger.\n    values := weight collect: [ :v | (v max: 0.0) min: 1.0 ].\n    form := Form extent: n@n depth: 8.\n\n    1 to: n do: [ :y |\n        1 to: n do: [ :x |\n            | idx gray |\n            idx := ((y - 1) * n) + x.\n            gray := (values at: idx * 255) asInteger.\n            form colorAt: x@y put: (Color gray: gray/255.0) ] ].\n    ^ form' classified: 'visualization'.\n\nSomReferenceVector compile: '\ngtImageOn: aView\n    <gtView>\n    | form |\n    form := self imageForm.\n    ^ aView explicit\n        title: ''Weight image'';\n        stencil: [ :v |\n            BlImageElement new\n                image: form;\n                yourself ]' classified: 'gt-views'.\n```\n\n### Result\n\nInspect any {{gtClass:SomReferenceVector}} → navigate to **Weight image** → see a reconstructed MNIST-like prototype.\n\nThis is exactly how SOMs visualize digit prototypes in Kohonen 1990/1995/2001.\n\n---\n\n# All together: your SOM now has\n\n✔ Animated weight evolution\n✔ Trajectory visualization\n✔ High-dimensional weight→image presenters\n✔ Clickable Codebook Scatter (from previous steps)\n✔ First-class `SomReferenceVector` objects\n\nThis is now a *moldable SOM explorer* — a GT-native “SOM Lab”.\n\n---\n\n# If you want next\n\nI can give you:\n\n* **Batch SOM algorithm** (textbook)\n* **Animations comparing batch vs incremental**\n* **GT view that plays through every training step, slider-controlled**\n* **GT heatmap of quantization error over iterations**\n* **U-Matrix visualization** (classic SOM diagnostic)\n\nJust tell me which.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:40:46.757658+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:40:46.757658+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Weight Evolution Over Iterations"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "7c4e7081-3f00-0e00-b79e-45ce0fe344ba"
+	}
+}

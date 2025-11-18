@@ -79,6 +79,82 @@ KohonenSom >> gtJsonFor: aView [
 ]
 
 { #category : #'gt-views' }
+KohonenSom >> gtWeightEvolutionOn: aView [
+    <gtView>
+    | snapshots iterations step data |
+    iterations := self maxIterations.
+    step := (iterations // 60) max: 1.    "Target ~60 frames"
+
+    "Run training and store snapshots"
+    snapshots := OrderedCollection new.
+    0 to: iterations - 1 do: [ :t |
+        (t \\ step = 0) ifTrue: [
+            snapshots add: (self weightsAsPoints2D collect: #copy) ].
+        self trainOne: (trainingData atRandom) atTime: t ].
+
+    ^ aView explicit
+        title: 'Weight evolution';
+        stencil: [ :v |
+            | root dotSize |
+            dotSize := 8.
+            root := BlElement new size: 600@600; background: Color white.
+
+            v animateFrames: snapshots using: [ :frame |
+                root removeAllChildren.
+                frame do: [ :pt |
+                    | dot |
+                    dot := BlElement new
+                        size: dotSize@dotSize;
+                        geometry: BlEllipseGeometry new;
+                        background: Color blue;
+                        relocate: (pt * self zoomFactor).
+                    root addChild: dot ].
+                root ] ]
+]
+
+{ #category : #'gt-views' }
+KohonenSom >> gtWeightMovementOn: aView [
+    <gtView>
+    | before after scale |
+    before := self weightsAsPoints2D collect: #copy.
+    self trainOn: trainingData.
+    after := self weightsAsPoints2D.
+    scale := self zoomFactor.
+
+    ^ aView explicit
+        title: 'Weight movement trajectories';
+        stencil: [ :v |
+            | root |
+            root := BlElement new size: 600@600; background: Color white.
+
+            1 to: before size do: [ :i |
+                | p0 p1 arrow |
+                p0 := before at: i.
+                p1 := after at: i.
+
+                "Start dot"
+                root addChild: (BlElement new
+                    size: 8@8;
+                    geometry: BlEllipseGeometry new;
+                    background: Color red;
+                    relocate: p0 * scale).
+
+                "End dot"
+                root addChild: (BlElement new
+                    size: 8@8;
+                    geometry: BlEllipseGeometry new;
+                    background: Color green;
+                    relocate: p1 * scale).
+
+                "Arrow from start → end"
+                arrow := BlLineElement from: (p0 * scale) to: (p1 * scale).
+                arrow border: (BlBorder paint: Color black width: 1).
+                root addChild: arrow ].
+
+            root ]
+]
+
+{ #category : #'gt-views' }
 KohonenSom >> gtWeightVectorsInInputSpaceOn: aView [
 	<gtView>
 	^ aView explicit

@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:47:08.338411+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:47:09.898619+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "NzVFmT8ADgC4yV4qD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Right, your image shows:\n\n> `#BlImageElement is missing, and does not understand #new`\n\nSo in *your* GT image there is no `BlImageElement` class. Let’s avoid referencing it directly and instead use the generic bridge that exists for `Form` → Bloc elements.\n\nGT normally gives `Form>>asElement`, which returns a Bloc element that knows how to render the form.\n\n### Fix `gtImageOn:` to use `asElement`\n\nDrop this **do-it** into a Lepiter snippet and run:\n\n```smalltalk\nSomReferenceVector\n    compile: '\ngtImageOn: aView\n    <gtView>\n    | form |\n    form := self imageForm.\n    ^ aView explicit\n        title: ''Weight image'';\n        stencil: [ :v |\n            form asElement ]'\n    classified: 'gt-views'.\n```\n\nLeave your `imageForm` method as in the previous step.\n\nThen re-open the *Weight image* view on a `SomReferenceVector` — it should now render the grayscale image instead of complaining about `BlImageElement`.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:47:26.241922+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:47:26.241922+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Fix gtImageOn: to use asElement"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "5e324599-3f00-0e00-b8c8-3b360fe344ba"
+	}
+}
