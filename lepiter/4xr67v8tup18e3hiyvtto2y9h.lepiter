@@ -1,0 +1,150 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:50:21.065172+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:50:28.257259+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "DWxzSjwADgC5VzmZCg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtMethod:KohonenSom>>#maxIterations}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:49:47.702336+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:52:07.552884+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "h1h2SDwADgC5UaeTCg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Right, that one’s on me — the tests/examples assume a `maxIterations` accessor that your `KohonenSom` doesn’t have yet.\n\nLet’s just add the missing accessor and keep the tests/examples as they are.\n\nDrop this **do-it chunk** into a Lepiter page and run it:\n\n```smalltalk\nKohonenSom\n    compile: '\nmaxIterations\n    \"Answer the configured number of training iterations.\n     This is used by tests and examples for radius decay, etc.\"\n    ^ iterations'\n    classified: 'accessing'.\n```\n\nThis assumes your initializer\n\n```smalltalk\ninitializeWithInputDimension: 2\n    width: 3\n    height: 3\n    iterations: 100\n```\n\nstores the value in an instance variable named `iterations` (which fits the message you’re already sending).\n\nAfter compiling that:\n\n* Re-run {{gtMethod:KohonenSomTest>>testRadiusDecaysOverTime}}\n* Re-run `KohonenSomExamples radiusDecayExample`\n\nIf the next error you hit is about `radiusAtTime:`, we can wire up a minimal, textbook-style decay there too.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:55:59.979921+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:56:01.785002+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "vdmmXjwADgC57qFXCg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "You’re fine — GT is just telling you **`iterations` does not exist**.\nIn your class, the instance variable is called **`maxIterations`**, so the accessor must use that.\n\nIgnore GT’s quick-fix suggestions and just recompile `maxIterations` like this:\n\n```smalltalk\nKohonenSom\n    compile: '\nmaxIterations\n    \"Answer the configured number of training iterations.\n     This is used by tests and examples for radius decay, etc.\"\n    ^ maxIterations'\n    classified: 'accessing'.\n```\n\nThat’s all:\n\n1. Put this chunk in a Lepiter snippet.\n2. Run it.\n3. Re-open `KohonenSom >> maxIterations` to confirm the body is `^ maxIterations`.\n4. Now run `KohonenSomTest testRadiusDecaysOverTime` or the `radiusDecayExample` again and see what the next failure (if any) is.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T09:50:06.511813+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T09:50:06.511813+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "maxIterations"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f5557648-3c00-0e00-b950-a2220a0e6753"
+	}
+}

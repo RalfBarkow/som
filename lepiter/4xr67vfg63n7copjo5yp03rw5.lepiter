@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T08:19:34.687565+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T08:19:42.665213+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "BUzSBTsADgC4u30jCg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:KohonenSomTest}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T08:17:59.649267+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T08:18:01.577717+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "4SAoADsADgC4sYQCCg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Good, let’s weaponize the tests. Below is a **full replacement** for\n`src/Som-Tests/KohonenSomTest.class.st`\nwith tests that actually try to falsify the SOM implementation.\n\nThese tests:\n\n* Assert **BMU correctness**\n* Assert **neighborhood shape**\n* Assert **radius decay over time**\n* Assert **weights move toward inputs**\n* Assert **quantization error decreases after training**\n* Assert **grid/weights size consistency**\n\nYou can paste this as-is into that file.\n\n---\n\n```smalltalk\nTestCase subclass: #KohonenSomTest\n    instanceVariableNames: 'som'\n    classVariableNames: ''\n    package: 'Som-Tests'!\n\n\n!KohonenSomTest methodsFor: 'set up'!\n\nsetUp\n    \"Create a small, reproducible SOM for the tests.\n     Adjust iterations if needed, but keep it > 20 so decay tests make sense.\"\n    som := KohonenSom new\n        initializeWithInputDimension: 2\n        width: 3\n        height: 3\n        iterations: 100.  \"maxIterations\"!\n! !\n\n\n!KohonenSomTest methodsFor: 'helpers'!\n\ndistanceSquaredFrom: v1 to: v2\n    \"Simple Euclidean squared distance between two 2D vectors (Collections of numbers).\"\n    ^ (v1 with: v2 collect: [ :a :b | (a - b) squared ]) sum!\n\nquantizationErrorFor: dataCollection\n    \"Mean (squared) quantization error over the given inputs.\"\n    | total |\n    total := 0.0.\n    dataCollection do: [ :input |\n        | bmuIndex w |\n        bmuIndex := som bestMatchingUnitIndexFor: input.\n        w := som weights at: bmuIndex.\n        total := total + (self distanceSquaredFrom: w to: input) ].\n    ^ total / dataCollection size asFloat!\n\ncopyWeights\n    \"Deep copy of the weights (collection of collections) so we can compare before/after.\"\n    ^ som weights collect: [ :w | w collect: [ :v | v ] ]!\n\ndeltaToInputForNeuron: neuronIndex input: inputVector\n    | w |\n    w := som weights at: neuronIndex.\n    ^ self distanceSquaredFrom: w to: inputVector! !\n\n\n!KohonenSomTest methodsFor: 'structure tests'!\n\ntestWeightsCollectionHasCorrectSize\n    \"Basic sanity: number of neurons = width * height.\"\n    self assert: som weights size equals: (som width * som height)! !\n\n\n!KohonenSomTest methodsFor: 'bmu tests'!\n\ntestBestMatchingUnitSelectsExactMatch\n    \"If one neuron weight exactly equals the input and all others are far away,\n     BMU must be that neuron. This falsifies distance/indexing bugs.\"\n    | input far |\n    input := #(0.0 0.0) asArray.\n    far := #(10.0 10.0) asArray.\n\n    1 to: som weights size do: [ :i |\n        som weights at: i put: far copy ].\n    som weights at: 1 put: input copy.\n\n    self assert: (som bestMatchingUnitIndexFor: input) equals: 1! !\n\n\n!KohonenSomTest methodsFor: 'neighborhood tests'!\n\ntestNeighborhoodInfluenceIsMaxAtWinnerAndDecreasesWithGridDistance\n    \"At t = 0, Gaussian neighborhood should give:\n     h(winner,winner) = 1, and strictly decreasing with grid distance.\n     This will fail if radiusAtTime: or gridDistance logic is wrong.\"\n    | winnerIndex neighborIndex farIndex\n      hWinner hNeighbor hFar |\n    \"Assuming 3x3 grid with indices:\n        1 2 3\n        4 5 6\n        7 8 9\n     winner = 5 (center), neighbor = 2, far = 1.\"\n    winnerIndex := 5.\n    neighborIndex := 2.\n    farIndex := 1.\n\n    hWinner := som\n        neighborhoodInfluenceAtTime: 0\n        winnerIndex: winnerIndex\n        neuronIndex: winnerIndex.\n\n    hNeighbor := som\n        neighborhoodInfluenceAtTime: 0\n        winnerIndex: winnerIndex\n        neuronIndex: neighborIndex.\n\n    hFar := som\n        neighborhoodInfluenceAtTime: 0\n        winnerIndex: winnerIndex\n        neuronIndex: farIndex.\n\n    \"At zero distance we expect e^(0) = 1.\"\n    self assert: (hWinner closeTo: 1.0) description: 'Winner influence should be 1 at distance 0'.\n    self assert: hWinner > hNeighbor.\n    self assert: hNeighbor > hFar! !\n\n\ntestRadiusDecaysOverTime\n    \"Radius should monotonically decrease over time and never hit zero too early.\n     This will fail if radiusAtTime: is constant or not implemented.\"\n    | r0 rMid rEnd mid |\n    r0 := som radiusAtTime: 0.\n    mid := som maxIterations // 2.\n    rMid := som radiusAtTime: mid.\n    rEnd := som radiusAtTime: som maxIterations - 1.\n\n    self assert: r0 > rMid.\n    self assert: rMid > rEnd.\n    self assert: rEnd > 0.0! !\n\n\n!KohonenSomTest methodsFor: 'learning dynamics tests'!\n\ntestTrainOneMovesBestMatchingUnitTowardsInput\n    \"A single training step should move the BMU weight closer to the input.\n     This falsifies bugs in updateNeuronAt:withInput:learningRate:neighborhoodInfluence:.\"\n    | input beforeWeights bmuIndex before after |\n    input := #(0.2 0.8) asArray.\n    beforeWeights := self copyWeights.\n\n    bmuIndex := som bestMatchingUnitIndexFor: input.\n    before := beforeWeights at: bmuIndex.\n\n    som trainOne: input atTime: 0.\n\n    after := som weights at: bmuIndex.\n\n    self assert:\n        ((self distanceSquaredFrom: after to: input)\n            < (self distanceSquaredFrom: before to: input))\n        description: 'BMU weight should move closer to the input after one training step'! !\n\n\ntestTrainOneMovesWinnerMoreThanFarNeuron\n    \"The BMU must move more than a far-away neuron for the same input,\n     otherwise the neighborhood function is wrong or not used.\"\n    | input beforeWeights bmuIndex winnerDelta farIndex farDelta |\n    input := #(0.5 0.5) asArray.\n    beforeWeights := self copyWeights.\n\n    bmuIndex := som bestMatchingUnitIndexFor: input.\n\n    \"Pick a far neuron: here index 1 is typically a corner far from center BMUs.\"\n    farIndex := 1.\n\n    som trainOne: input atTime: 0.\n\n    winnerDelta := (self distanceSquaredFrom: (beforeWeights at: bmuIndex)\n                                 to: (som weights at: bmuIndex)).\n    farDelta := (self distanceSquaredFrom: (beforeWeights at: farIndex)\n                                 to: (som weights at: farIndex)).\n\n    self assert: winnerDelta > farDelta\n        description: 'BMU must be updated more strongly than a far neuron'! !\n\n\n!KohonenSomTest methodsFor: 'quantization tests'!\n\ntestTrainingReducesQuantizationErrorOnSimpleDataset\n    \"On a tiny 2D dataset, overall quantization error should decrease after training.\n     This falsifies globally broken training loops (trainOn:, neighborhood, learning rate).\"\n    | data before after |\n    data := {\n        #(0.0 0.0) asArray.\n        #(1.0 1.0) asArray }.\n\n    before := self quantizationErrorFor: data.\n    som trainOn: data.\n    after := self quantizationErrorFor: data.\n\n    self assert: after < before\n        description: 'Quantization error should decrease after training on a simple dataset'! !\n\n```\n\n---\n\nIf you like, next step we can:\n\n* Add **gtExamples** that mirror these tests (for live inspection in GT),\n* Or tighten some tests (e.g., make `testTrainingReducesQuantizationErrorOnSimpleDataset` more deterministic by controlling initialization).\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T08:18:24.955449+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T08:18:24.955449+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "src/Som-Tests/KohonenSomTest.class.st"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "f5132800-3b00-0e00-b8b0-42ff0a0e6753"
+	}
+}

@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:40:37.863173+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:40:50.25859+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "O3ewJzwADgC5CktiCg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:KohonenSomExamples}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:39:52.067232+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T09:39:54.314161+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "F631JDwADgC5BEE3Cg5nUw=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here are the **do-it chunks** you can paste into a Lepiter page and run to install the `KohonenSomExamples` class and all its methods.\n\nYou can execute them one big chunk at a time or piece-by-piece.\n\n```smalltalk\n\"Create or re-create the examples class\"\n\nObject\n    subclass: #KohonenSomExamples\n    instanceVariableNames: ''\n    classVariableNames: ''\n    package: 'Som-Examples'.\n```\n\n```smalltalk\n\"Helper methods on the class side\"\n\nKohonenSomExamples class\n    compile: '\nsquaredDistanceFrom: v1 to: v2\n    \"Simple Euclidean squared distance for Collections of numbers.\"\n    ^ (v1 with: v2 collect: [ :a :b | (a - b) squared ]) sum'\n    classified: 'helpers'.\n\nKohonenSomExamples class\n    compile: '\nmeanQuantizationErrorFor: aSom on: dataCollection\n    | total |\n    total := 0.0.\n    dataCollection do: [ :input |\n        | bmuIndex w |\n        bmuIndex := aSom bestMatchingUnitIndexFor: input.\n        w := aSom weights at: bmuIndex.\n        total := total + (self squaredDistanceFrom: w to: input) ].\n    ^ total / dataCollection size asFloat'\n    classified: 'helpers'.\n```\n\n```smalltalk\n\"Core example: a small SOM as in the tests\"\n\nKohonenSomExamples class\n    compile: '\nsmallSom\n    <gtExample>\n    \"A small 3x3 SOM with 2D input, as used in the tests.\"\n    ^ (KohonenSom new\n        initializeWithInputDimension: 2\n        width: 3\n        height: 3\n        iterations: 100)'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testWeightsCollectionHasCorrectSize\"\n\nKohonenSomExamples class\n    compile: '\nweightsCollectionSizeExample\n    <gtExample>\n    \"Mirror of testWeightsCollectionHasCorrectSize.\n     Inspect to see width, height and weights size.\"\n    | som |\n    som := self smallSom.\n    ^ {\n        #width -> som width.\n        #height -> som height.\n        #expectedNeuronCount -> (som width * som height).\n        #actualWeightsSize -> som weights size\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testBestMatchingUnitSelectsExactMatch\"\n\nKohonenSomExamples class\n    compile: '\nbmuExactMatchExample\n    <gtExample>\n    \"Mirror of testBestMatchingUnitSelectsExactMatch.\n     One neuron weight equals input, all others are far away.\n     Inspect to see the chosen BMU index.\"\n    | som input far |\n    som := self smallSom.\n    input := #(0.0 0.0) asArray.\n    far := #(10.0 10.0) asArray.\n\n    1 to: som weights size do: [ :i |\n        som weights at: i put: far copy ].\n    som weights at: 1 put: input copy.\n\n    ^ {\n        #input -> input.\n        #weights -> som weights.\n        #bmuIndex -> (som bestMatchingUnitIndexFor: input)\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testNeighborhoodInfluenceIsMaxAtWinnerAndDecreasesWithGridDistance\"\n\nKohonenSomExamples class\n    compile: '\ngaussianNeighborhoodProfileExample\n    <gtExample>\n    \"Mirror of testNeighborhoodInfluenceIsMaxAtWinnerAndDecreasesWithGridDistance.\n     Assumes a 3x3 grid with indices:\n       1 2 3\n       4 5 6\n       7 8 9\n     Winner = 5 (center), neighbor = 2, far = 1.\"\n    | som winnerIndex neighborIndex farIndex hWinner hNeighbor hFar |\n    som := self smallSom.\n    winnerIndex := 5.\n    neighborIndex := 2.\n    farIndex := 1.\n\n    hWinner := som\n        neighborhoodInfluenceAtTime: 0\n        winnerIndex: winnerIndex\n        neuronIndex: winnerIndex.\n\n    hNeighbor := som\n        neighborhoodInfluenceAtTime: 0\n        winnerIndex: winnerIndex\n        neuronIndex: neighborIndex.\n\n    hFar := som\n        neighborhoodInfluenceAtTime: 0\n        winnerIndex: winnerIndex\n        neuronIndex: farIndex.\n\n    ^ {\n        #winnerIndex -> winnerIndex.\n        #neighborIndex -> neighborIndex.\n        #farIndex -> farIndex.\n        #hWinner -> hWinner.\n        #hNeighbor -> hNeighbor.\n        #hFar -> hFar\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testRadiusDecaysOverTime\"\n\nKohonenSomExamples class\n    compile: '\nradiusDecayExample\n    <gtExample>\n    \"Mirror of testRadiusDecaysOverTime.\n     Inspect to see radius at start, mid and end.\"\n    | som r0 mid rMid rEnd |\n    som := self smallSom.\n    r0 := som radiusAtTime: 0.\n    mid := som maxIterations // 2.\n    rMid := som radiusAtTime: mid.\n    rEnd := som radiusAtTime: som maxIterations - 1.\n\n    ^ {\n        #r0 -> r0.\n        #midIteration -> mid.\n        #rMid -> rMid.\n        #rEnd -> rEnd\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testTrainOneMovesBestMatchingUnitTowardsInput\"\n\nKohonenSomExamples class\n    compile: '\ntrainOneMovesBmuTowardsInputExample\n    <gtExample>\n    \"Mirror of testTrainOneMovesBestMatchingUnitTowardsInput.\n     Inspect before and after distances to see that the BMU moved closer.\"\n    | som input bmuIndex beforeVector afterVector beforeDist afterDist |\n    som := self smallSom.\n    input := #(0.2 0.8) asArray.\n\n    bmuIndex := som bestMatchingUnitIndexFor: input.\n    beforeVector := (som weights at: bmuIndex) copy.\n    beforeDist := self\n        squaredDistanceFrom: beforeVector\n        to: input.\n\n    som trainOne: input atTime: 0.\n\n    afterVector := som weights at: bmuIndex.\n    afterDist := self\n        squaredDistanceFrom: afterVector\n        to: input.\n\n    ^ {\n        #input -> input.\n        #bmuIndex -> bmuIndex.\n        #beforeVector -> beforeVector.\n        #afterVector -> afterVector.\n        #beforeDistanceSquared -> beforeDist.\n        #afterDistanceSquared -> afterDist\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testTrainOneMovesWinnerMoreThanFarNeuron\"\n\nKohonenSomExamples class\n    compile: '\ntrainOneNeighborhoodMovementExample\n    <gtExample>\n    \"Mirror of testTrainOneMovesWinnerMoreThanFarNeuron.\n     Inspect the deltas of winner versus far neuron.\"\n    | som input bmuIndex farIndex beforeWeights winnerDelta farDelta |\n    som := self smallSom.\n    input := #(0.5 0.5) asArray.\n\n    bmuIndex := som bestMatchingUnitIndexFor: input.\n    farIndex := 1.\n\n    beforeWeights := som weights collect: [ :w | w collect: [ :v | v ] ].\n\n    som trainOne: input atTime: 0.\n\n    winnerDelta := self\n        squaredDistanceFrom: (beforeWeights at: bmuIndex)\n        to: (som weights at: bmuIndex).\n    farDelta := self\n        squaredDistanceFrom: (beforeWeights at: farIndex)\n        to: (som weights at: farIndex).\n\n    ^ {\n        #input -> input.\n        #bmuIndex -> bmuIndex.\n        #farIndex -> farIndex.\n        #winnerDeltaSquared -> winnerDelta.\n        #farDeltaSquared -> farDelta\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\n```smalltalk\n\"Mirror of testTrainingReducesQuantizationErrorOnSimpleDataset\"\n\nKohonenSomExamples class\n    compile: '\nquantizationErrorBeforeAfterTrainingExample\n    <gtExample>\n    \"Mirror of testTrainingReducesQuantizationErrorOnSimpleDataset.\n     Inspect to see before and after quantization errors.\"\n    | som data before after |\n    som := self smallSom.\n    data := {\n        #(0.0 0.0) asArray.\n        #(1.0 1.0) asArray }.\n\n    before := self meanQuantizationErrorFor: som on: data.\n    som trainOn: data.\n    after := self meanQuantizationErrorFor: som on: data.\n\n    ^ {\n        #data -> data.\n        #beforeError -> before.\n        #afterError -> after\n      } asDictionary'\n    classified: 'gt-examples'.\n```\n\nAfter running these:\n\n* Browse `KohonenSomExamples class` → Examples tab in GT,\n* Run each example to inspect the dictionaries and correlate with the tests/falsifier behaviour.\n\nIf you’d like, next I can give you **gtViews** on `KohonenSom` itself that, for example, plot:\n\n* the Gaussian neighborhood over the 3×3 grid,\n* or quantization error over time,\n  so you can visually see when things break.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T09:40:31.61456+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T09:40:31.61456+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : " Install the KohonenSomExamples class and all its methods"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "de73f524-3c00-0e00-b903-08d20a0e6753"
+	}
+}

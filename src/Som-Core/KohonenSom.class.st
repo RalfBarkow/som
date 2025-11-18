@@ -176,6 +176,14 @@ KohonenSom >> learningRateAtTime: t [
     ^ initialLearningRate * (Float e raisedTo: (t negated / learningTimeConstant))
 ]
 
+{ #category : #accessing }
+KohonenSom >> maxIterations [
+	"Answer the configured number of training iterations.
+     This is used by tests and examples for radius decay, etc."
+
+	^ maxIterations
+]
+
 { #category : #training }
 KohonenSom >> neighborhoodInfluenceAtTime: t winnerIndex: winnerIndex neuronIndex: neuronIndex [
     "Gaussian neighborhood h_ci(t) in the neuron grid."
