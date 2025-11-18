@@ -1,0 +1,261 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:21:50.112925+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:22:05.833239+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "1uzGPj8ADgCm1/a4D+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:KohonenSomExamples}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:20:29.533292+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:20:29.533292+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "I1X5OT8ADgCmnwJ1D+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here are the Pharo **do-it snippets** (using `compile:`) you can paste into a Lepiter page. They will:\n\n* introduce a `SomReferenceVector` model, and\n* make the **Codebook Scatter** dots clickable (each dot opens an inspector on its reference vector).\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:20:23.98585+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:20:27.415984+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "9LSkOT8ADgCmkSxKD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 1. Define `SomReferenceVector` class + basic API\n\n```smalltalk\n\"Do it: create SomReferenceVector and its methods\"\n\n| cls |\ncls := Smalltalk\n    at: #SomReferenceVector\n    ifAbsent: [\n        Object\n            subclass: #SomReferenceVector\n            instanceVariableNames: 'som index weight point2D gridPosition'\n            classVariableNames: ''\n            package: 'Som-Core' ].\n\n\"Class-side constructor\"\ncls class compile: '\nsom: aSom\nindex: anIndex\nweight: aWeight\npoint2D: aPoint\ngridPosition: aGridPoint\n\n    ^ self new\n        som: aSom;\n        index: anIndex;\n        weight: aWeight;\n        point2D: aPoint;\n        gridPosition: aGridPoint;\n        yourself\n' classified: 'instance creation'.\n\n\"Instance-side accessors / mutators\"\ncls compile: '\nsom\n    ^ som\n' classified: 'accessing'.\n\ncls compile: '\nsom: aSom\n    som := aSom\n' classified: 'accessing'.\n\ncls compile: '\nindex\n    ^ index\n' classified: 'accessing'.\n\ncls compile: '\nindex: anInteger\n    index := anInteger\n' classified: 'accessing'.\n\ncls compile: '\nweight\n    ^ weight\n' classified: 'accessing'.\n\ncls compile: '\nweight: anArray\n    weight := anArray\n' classified: 'accessing'.\n\ncls compile: '\npoint2D\n    ^ point2D\n' classified: 'accessing'.\n\ncls compile: '\npoint2D: aPoint\n    point2D := aPoint\n' classified: 'accessing'.\n\ncls compile: '\ngridPosition\n    ^ gridPosition\n' classified: 'accessing'.\n\ncls compile: '\ngridPosition: aPoint\n    gridPosition := aPoint\n' classified: 'accessing'.\n\n\"Nice textual description when you inspect a reference vector\"\ncls compile: '\nprintOn: aStream\n    super printOn: aStream.\n    aStream\n        nextPutAll: '' index: ''; print: index;\n        nextPutAll: '' point2D: ''; print: point2D\n' classified: 'printing'.\n```\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:21:00.108272+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:21:00.108272+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IuTLOz8ADgCmte1gD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 2. Extend `KohonenSom` with helpers for reference vectors\n\n```smalltalk\n\"Do it: add reference-vector helpers and new clickable Codebook Scatter\"\n\n| somClass |\nsomClass := Smalltalk at: #KohonenSom.\n\n\"Map linear neuron index → 2D grid position (1-based)\"\nsomClass compile: '\ngridPointAtIndex: anIndex\n    \"Return the (x@y) grid coordinates for a linear neuron index.\n    Indexing is row-major: x = column, y = row.\"\n\n    | zeroBased x y |\n    zeroBased := anIndex - 1.\n    x := (zeroBased \\\\ width) + 1.\n    y := (zeroBased // width) + 1.\n    ^ x @ y\n' classified: 'geometry'.\n\n\"Build a SomReferenceVector for each neuron\"\nsomClass compile: '\nreferenceVectors\n    \"Answer a collection of SomReferenceVector, one per neuron.\"\n\n    | pts |\n    pts := self weightsAsPoints2D.\n    ^ (1 to: weights size) collect: [ :i |\n        SomReferenceVector\n            som: self\n            index: i\n            weight: (weights at: i)\n            point2D: (pts at: i)\n            gridPosition: (self gridPointAtIndex: i) ]\n' classified: 'accessing'.\n```\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:21:21.73631+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:21:21.73631+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "TecVPT8ADgCmx8heD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 3. Replace `gtWeightVectorsInInputSpaceOn:` with a **clickable** version\n\nThis reuses your existing title *“Codebook Scatter”* but now each dot is bound to a `SomReferenceVector` and opens an inspector on click.\n\n```smalltalk\n\"Do it: clickable Codebook Scatter for KohonenSom\"\n\n| somClass |\nsomClass := Smalltalk at: #KohonenSom.\n\nsomClass compile: '\ngtWeightVectorsInInputSpaceOn: aView\n    <gtView>\n    ^ aView explicit\n        title: ''Codebook Scatter'';\n        stencil: [ :presentation | \n            | root |\n            root := BlElement new\n                size: 600 @ 600;\n                background: Color white;\n                yourself.\n\n            self referenceVectors do: [ :ref |\n                | pixelPoint dot |\n                \"Scale the 0..1 point into pixel space via zoomFactor.\"\n                pixelPoint := ref point2D * self zoomFactor.\n\n                dot := BlElement new\n                    size: 12 @ 12;\n                    geometry: BlEllipseGeometry new;\n                    background: Color blue;\n                    relocate: pixelPoint;\n                    yourself.\n\n                \"Clicking the dot inspects the corresponding reference vector.\"\n                dot when: BlMouseDownEvent do: [ :evt | ref inspect ].\n\n                root addChild: dot ].\n\n            root ]\n' classified: 'gt-views'.\n```\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:19:48.033031+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:21:29.785882+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "SyKANz8ADgCmiVq4D+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "## 4. (Optional) Quick check snippet\n\nAfter running the chunks above, you can sanity-check from a playground:\n\n```smalltalk\nKohonenSomExamples exampleUnitSquare2D\n    gtWeightVectorsInInputSpaceOn: GtInspector openOn:\n```\n\n(or just run the example and pick the *Codebook Scatter* tab as before).\n\nClicking a blue dot should now pop up an inspector on the corresponding `SomReferenceVector`, where you see:\n\n* `index` (neuron number)\n* `point2D` (its position in input space)\n* `weight` (full weight vector)\n* `gridPosition` (its place on the SOM lattice).\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:20:07.033739+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:20:07.033739+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Define SomReferenceVector class + basic API"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "901f8037-3f00-0e00-a688-4a790fe344ba"
+	}
+}

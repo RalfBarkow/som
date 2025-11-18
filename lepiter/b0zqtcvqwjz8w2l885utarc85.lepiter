@@ -1,0 +1,187 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:17:04.996284+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:17:12.859931+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "8mPILT8ADgCl+t1WD+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:ReferenceVector}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:18:08.843495+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:18:18.334448+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2ZaWMT8ADgCmYXD0D+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Short, direct answer aligned with what you see in GT: [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691c6311-1664-8327-bdfd-d9d2ab37a030)"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:18:24.258978+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:18:24.258978+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "bNCBMj8ADgCmeBSED+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# ✅ What are the objects in the **Codebook Scatter**?\n\nThey are **Points** — literally `Point` instances created from each neuron’s **weight vector**, projected into 2D.\n\nConcretely:\n\n* `weightsAsPoints2D` → an `OrderedCollection` of **Point(x @ y)**\n* each `Point` represents **one neuron’s reference vector**, scaled/normed to 2D for plotting\n* the scatter view renders exactly those Points as blue dots\n* when you click a dot, GT tries to treat it as JSON → *but `Point` does not implement `#gtRawJsonFor:context:` → error you see*\n\nSo:\n**these are not JSON objects, not Dictionaries, not GTInspectables — only bare Points.**\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:14:59.37107+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T13:18:26.619565+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "9IBLJj8ADgClqYlND+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# Why clicking shows an error?\n\nBecause your code:\n\n```smalltalk\ngtJsonFor: aView\n    <gtView>\n    ^ aView forward\n        title: 'weightsAsPoints2D';\n        object: [ self weightsAsPoints2D asGtJson ];\n        view: #gtJsonObjectFor:context:\n```\n\nGT tries to call on each element:\n\n```\nPoint >> gtRawJsonFor:context:\n```\n\nwhich does not exist → hence:\n\n**“Instance of Point did not understand #gtRawJsonFor:context:”**\n\n---\n\n# ☑️ If you want clickable objects → you need a **model class**, not Points\n\nA good next step is to introduce:\n\n```smalltalk\nReferenceVector\n    weight: #( … )\n    position: 3@4\n    id: 17\n```\n\nwith proper:\n\n* `gtView` (e.g., show raw weight)\n* `gtJsonFor:`\n* `gtInspectorPresentations`\n\nso clicking a dot opens a full inspector on that **ReferenceVector** rather than failing on a `Point`.\n\n---\n\n# If you want, I can generate:\n\n1. `ReferenceVector` class\n2. adapter in {{gtMethod:KohonenSom >> weightsAsReferenceVectors}}\n3. new `gtScatter` using that model\n4. clicking a dot opens a full inspector\n5. optional `gtJsonFor:` that works\n\nTell me *which* of these you want.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:16:42.541485+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T13:16:42.541485+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "What are the objects in the Codebook Scatter?"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "a5744b26-3f00-0e00-a5a8-89a40fe344ba"
+	}
+}

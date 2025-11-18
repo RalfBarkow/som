@@ -56,6 +56,19 @@ KohonenSom >> gridDistanceSquaredFrom: p1 to: p2 [
     ^ (dx * dx) + (dy * dy)
 ]
 
+{ #category : #geometry }
+KohonenSom >> gridPointAtIndex: anIndex [
+    "Return the (x@y) grid coordinates for a linear neuron index.
+    Indexing is row-major: x = column, y = row."
+
+    | zeroBased x y |
+    zeroBased := anIndex - 1.
+    x := (zeroBased \\ width) + 1.
+    y := (zeroBased // width) + 1.
+    ^ x @ y
+
+]
+
 { #category : #'as yet unclassified' }
 KohonenSom >> gtJsonFor: aView [
 	<gtView>
@@ -65,29 +78,32 @@ KohonenSom >> gtJsonFor: aView [
 		view: #gtJsonObjectFor:context:
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'gt-views' }
 KohonenSom >> gtWeightVectorsInInputSpaceOn: aView [
 	<gtView>
 	^ aView explicit
 		title: 'Codebook Scatter';
 		stencil: [ :presentation | 
-			| root scaledPoints |
+			| root |
 			root := BlElement new
 					size: 600 @ 600;
 					background: Color white;
 					yourself.
 
-			scaledPoints := self weightsAsPoints2DScaledBy: self zoomFactor.
+			self referenceVectors
+				do: [ :ref | 
+					| pixelPoint dot |
+					"Scale the 0..1 point into pixel space via zoomFactor."
+					pixelPoint := ref point2D * self zoomFactor.
 
-			scaledPoints
-				do: [ :p "p is a scaled Point in pixel space" | 
-					| dot |
 					dot := BlElement new
 							size: 12 @ 12;
 							geometry: BlEllipseGeometry new;
 							background: Color blue;
-							relocate: p;
-							yourself.
+							relocate: pixelPoint;
+							yourself.	"Clicking the dot inspects the corresponding reference vector."
+					dot when: BlMouseDownEvent do: [ :evt | ref inspect ].
+
 					root addChild: dot ].
 
 			root ]
@@ -197,6 +213,22 @@ KohonenSom >> radiusAtTime: t [
     "Exponential decay of the neighborhood radius."
     
     ^ initialRadius * (Float e raisedTo: (t negated / radiusTimeConstant))
+]
+
+{ #category : #accessing }
+KohonenSom >> referenceVectors [
+    "Answer a collection of SomReferenceVector, one per neuron."
+
+    | pts |
+    pts := self weightsAsPoints2D.
+    ^ (1 to: weights size) collect: [ :i |
+        SomReferenceVector
+            som: self
+            index: i
+            weight: (weights at: i)
+            point2D: (pts at: i)
+            gridPosition: (self gridPointAtIndex: i) ]
+
 ]
 
 { #category : #'as yet unclassified' }
