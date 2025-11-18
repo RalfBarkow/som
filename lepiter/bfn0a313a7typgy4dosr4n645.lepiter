@@ -1,0 +1,336 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [
+						{
+							"__type" : "textSnippet",
+							"children" : {
+								"__type" : "snippets",
+								"items" : [ ]
+							},
+							"createEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"createTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-18T23:32:56.394731+01:00"
+								}
+							},
+							"editEmail" : {
+								"__type" : "email",
+								"emailString" : "<unknown>"
+							},
+							"editTime" : {
+								"__type" : "time",
+								"time" : {
+									"__type" : "dateAndTime",
+									"dateAndTimeString" : "2025-11-18T23:33:03.641679+01:00"
+								}
+							},
+							"uid" : {
+								"__type" : "uid",
+								"uidString" : "hfVByEcADgCxzVVCCx4kwQ=="
+							},
+							"paragraphStyle" : {
+								"__type" : "textStyle"
+							},
+							"string" : "KOHONEN, Teuvo, 1995. Self-organizing maps. Berlin ; New York: Springer. Springer series in information sciences, 30. ISBN 978-3-540-58600-5. "
+						}
+					]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:31:58.482237+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:32:00.44151+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ck/OxEcADgCxvNcACx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Examples of Ordering. It may be quite surprising that when starting with random mi(O), the reference vectors will attain ordered values in the long run, even in high-dimensional spaces. This ordering is first illustrated by means  of two-dimensional input data x = [6, 6F E l}?2 that have some arbitrarily structured distribution. For instance, if x is a stochastic vector, its probability density function p(x) may be assumed uniform within the framed areas in Fig. 3.3 and zero outside them. The topological relations between the neurons in a square array can be visualized by auxiliary lines that are drawn between the neighboring reference or codebook vectors (points in the signal space). The reference vectors in these graphs now correspond to the crossings and end points of this network of auxiliary lines, whereby the relative topological order becomes immediately visible."
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:33:39.598494+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:33:44.413973+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IDLVykcADgCyEf/OCx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Short answer: **Yes — the SOM’s reference vectors behave very much like the “inner models” in Bråten’s *beteiligte Spiegelung* (participatory mirror-matching).**\nBut with an important precision: **they are models *without intentionality* — structural mirrors, not social ones.** [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691cf32a-d904-832c-9b20-aff7e0db31da)\n\nBelow is the clear mapping.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:10.2522+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:10.2522+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "7O+ozEcADgCyIc1UCx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# ✔ Bråten: “Beteiligte Spiegelung” — what it is\n\nBråten’s concept refers to:\n\n* a system that **carries an internal model** of its interaction partner,\n* updates this model in response to interaction,\n* and uses it to regulate its own behavior.\n\nIt’s a *participatory*, *mutual*, *internalized* mirroring.\nNot just reflection — but *co-constitution via interaction*.\n\nKey ingredients:\n\n1. **Alter-model**\n   The system maintains an internal representation of the Other.\n\n2. **Self–other coupling**\n   Updates occur through reciprocal exchange.\n\n3. **Topological coherence**\n   The system organizes internal models in a structured relational space.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:19.211623+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:19.211623+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "6qQxzUcADgCyMxqNCx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# ✔ SOM reference vectors: what they are\n\nIn SOM:\n\n* each neuron holds a **reference vector** (weight vector)\n* through repeated interaction with data\n* the neuron’s internal model gradually becomes a **prototype** of a region of the input space\n* neighboring neurons maintain **coherent internal models** through the neighborhood function\n* this yields a **structured map of internalized input regularities**\n\nThis is precisely why the SOM is often interpreted as:\n\n> *“a perceptual sheet of internalized expectations.”*\n\nThat is **exactly Bråten-like**.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:46.743254+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:46.743254+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "R77VzkcADgCySvcTCx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# ✔ Mapping SOM → Bråten’s “participatory mirror-matching”\n\n| Bråten                       | SOM                                                        |\n| ---------------------------- | ---------------------------------------------------------- |\n| Internal model of the Other  | Reference vector mᵢ                                        |\n| Participatory updating       | Neuron updates through BMU + neighborhood interaction      |\n| Embodied coupling            | Neighborhood function hᵢⱼ(t) couples units during learning |\n| Coherent relational topology | SOM grid (2D lattice) maintains adjacency relations        |\n| Emergence of shared meaning  | Smoothly ordered feature map                               |\n\nIn short:\n\n### ✔ Each reference vector is a *mirror* of a region of the input world.\n\n### ✔ Neighboring reference vectors are *co-mirrors* that coordinate through learning.\n\n### ✔ The whole map becomes an *internalized topology* of the external world.\n\nThis is deeply Bråten-esque.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:52.907379+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:52.907379+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "KM0zz0cADgCyUUMPCx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "---\n\n# ✔ Where the analogy *breaks* (important)\n\nBråten’s model involves:\n\n* intentionality\n* coordination with an “alter”\n* mutual regulation\n* embodied subjectivity\n\nSOM has:\n\n* no agency\n* no bidirectional modelling (data does not adapt to SOM)\n* no intentional coupling\n\nSo the analogy is structural, not phenomenological.\n\nStill, as a **cognitive architecture metaphor** the alignment is excellent.\n"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:31:36.511809+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T23:34:56.036921+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "gBF/w0cADgCxuwm+Cx4kwQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "# ✔ If you want to incorporate this in your GT curriculum\n\nWe could add a narrative unit:\n\n**“Reference Vectors as Participatory Mirrors”**\nConnecting:\n\n* Kohonen (feature-sensitive neurons)\n* Bråten (internal other-representation)\n* Distinction networks (your Korz/Kauffman angle)\n* GT moldable objects (ReferenceVector inspectors)\n\nPossible visual exercise:\n\n* Show each reference vector’s “mirror region” (its Voronoi cell)\n* Show how the mirrors reorganize during ordering\n* Show neighbor-spread of changes (participatory coupling)\n* Compare to Bråten’s diagrams of mirroring\n\nIf you want, I can write:\n\n🔹 a one-page **curriculum text** explaining Bråten → SOM mapping\n🔹 a GT visualization **neuron-as-mirror inspector**\n🔹 a class `ReferenceVector` with GT views that express this metaphor\n🔹 or a **philosophical sidebar** connecting Bråten ↔ Varela ↔ Kohonen\n\nJust tell me which one you want.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T23:31:57.088214+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T23:31:57.088214+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Examples of Ordering"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "b50e7fc3-4700-0e00-b1ba-da3d0b1e24c1"
+	}
+}
