@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T00:04:03.510515+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T00:04:28.650501+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "U4m0GTQADgC2UchACsQBBA=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here is the full curriculum ladder you asked for — **designed precisely for a Newcomer in GT, Pharo, and SOMs**, grounded in **Kohonen 1995/2001** and aligned with the *actual sequence of views you are building* in your Som-Core package. [chatgpt](https://chatgpt.com/g/g-p-691997577a78819194cd62664eb19c31-som/c/691ba8fc-3580-8333-8f6a-6fe56252f5ba)\n\nIt includes:\n\n* **Progressive learning stages**\n* **The exact GT views to implement at each stage**\n* **What the learner sees / understands**\n* **Pointers into Kohonen (2001)**\n* **Where the FolkMemory analogy helps**\n* **Why your current “2D Input Space” is #2, not #1**\n\n---\n\n# 🌱 Full Curriculum Ladder: From Points to Maps\n\nThis ladder is meant to be implemented directly in the GT curriculum repository and is consistent with how GT wants “moldable learning” to work: **start with something visible**, and enrich the learner’s mental model one small view at a time.\n\n---\n\n# 🟦 STAGE 0 — Zero Visualization\n\n### 0.1 Concept\n\nLearner sees only the raw data.\nThis grounds everything in *actual numerical vectors*.\n\n### 0.2 GT View\n\n`Weights`\n→ Displays the `weights` array as numbers.\n\n### 0.3 Learning objective\n\nUnderstand:\n\n* A SOM is “just” a set of prototype vectors (*codebook vectors*).\n* Each prototype lives in input space.\n\n### 0.4 Kohonen (2001)\n\nSect. **3.1–3.2**:\n\n* “Reference vectors”\n* The SOM as *moving representative prototypes*\n\n---\n\n# 🟧 STAGE 1 — Points in Input Space (Unscaled)\n\n**This is where your original `weightsAsPoints2D` view sits.**\n\n### 1.1 Concept\n\nProject each N-dimensional weight vector to 2D input space — only works because you start with **inputDimension = 2**.\n\n### 1.2 GT View\n\n`weightsAsPoints2D`\n\n* Draw dots at (x,y).\n* No scaling.\n* No zoom.\n* No grid.\n\n### 1.3 Learning objective\n\nUnderstand:\n\n* Codebook vectors occupy *regions* in input space.\n* Their shape is arbitrary at init.\n\n### 1.4 Kohonen (2001)\n\nSect. **3.4.1 – Ordering of Reference Vectors in the Input Space**\nThis is exactly what this view corresponds to.\n\n---\n\n# 🟩 STAGE 2 — Scaled Input Space Projection\n\n**Your current “2D Input Space” tab belongs here.**\n\n### 2.1 Concept\n\nSame as Stage 1, but:\n\n* Add zoom\n* Keep origin fixed\n* Fit into a fixed pixel canvas\n\n### 2.2 GT View (rename!)\n\nRename from:\n❌ *2D Input Space*\nTo the correct name:\n\n### **“Mapped Points in Input Space”**\n\n### 2.3 Why this name?\n\nBecause this view does **not** show the SOM grid;\nit only shows **the mapped codebook vectors**, i.e. the *topology in input space*.\nThis is representation #2 in Kohonen’s terminology.\n\n### 2.4 Learning objective\n\nUnderstand:\n\n* Why untrained SOM codebook vectors form strange shapes (e.g. “butterfly”)\n* Why training gradually straightens the manifold\n* Why distances in input space matter for early organization\n\n### 2.5 Kohonen (2001)\n\nSect. **3.4.1** and Fig. 3.5 (ordering demonstration in input space).\nThis is a direct counterpart.\n\n---\n\n# 🟦 STAGE 3 — SOM Grid Coordinates (Output Space)\n\n### 3.1 Concept\n\nEach node i has:\n\n* A location on the *map grid* (usually a 2D lattice)\n* A vector in input space (the codebook vector)\n\nThis view shows only the **grid layout**.\n\n### 3.2 GT View\n\n`gridCoordinates2D`\n\n* Draw each unit at its (i,j) lattice coordinate\n* No weights yet\n\n### 3.3 Learning objective\n\nUnderstand:\n\n* The SOM output layer is a *fixed topology graph*\n* Neighborhood functions live here, not in input space\n\n### 3.4 Kohonen (2001)\n\nSect. **3.1 – The Map Grid as an Elastic Net**.\n\n---\n\n# 🟪 STAGE 4 — SOM Grid in Input Space (the classical SOM visualization)\n\n### This is *the missing view you will add next*.\n\n### 4.1 Concept\n\nMap the **output grid** into **input space**:\n\n* For each unit, take its 2D grid coordinate (i,j)\n* Draw a small line or arrow from (i,j) to its weight vector projected into input space\n\nThis is the canonical SOM illustration.\n\n### 4.2 GT View\n\n`mappedGridInInputSpace`\nTwo variants:\n\n#### Variant A — Line connections\n\n* Draw lines connecting neighboring SOM units\n* Each endpoint is positioned at its weight vector projection in input space\n\nResult:\nLearner sees a *“pseudo-elastic net”* deforming to fit data manifold.\n\n#### Variant B — “Spider” layout\n\n* Each node is shown as dot at its weight position\n* Edges drawn between neighbors\n\n### 4.3 Learning objective\n\nUnderstand the SOM as:\n\n* A continuous mapping\n* A topology-preserving projection\n* A manifold “approximator”\n\n### 4.4 Kohonen (2001)\n\nSect. **3.4.1 (input-space ordering)**\nSect. **3.4.2 (output-space ordering)**\nThis view *unifies* these two.\n\n---\n\n# 🟫 STAGE 5 — U-Matrix (Unified Distance Matrix)\n\n### 5.1 Concept\n\nDisplay local distances between neighboring codebook vectors.\n\n### 5.2 GT view\n\n`uMatrix`\n\n* Color-coded\n* Shows cluster structure\n\n### 5.3 Learning objective\n\nUnderstand:\n\n* Clusters as “hills and valleys”\n* Meaning of magnification factor\n* Why SOM is used for visualization\n\n### 5.4 Kohonen (2001)\n\nSect. **3.15 – Using Gray Levels to Indicate Clusters**.\n\n---\n\n# 🟨 STAGE 6 — “Data → Best Matching Unit Map”\n\n### 6.1 Concept\n\nGiven input samples:\nShow how they map to the grid (index of winning neuron).\n\n### 6.2 GT view\n\n`bmuAssignmentPlot`\nDots over grid units, cluster-like patterns.\n\n### 6.3 Learning objective\n\nUnderstand:\n\n* How the SOM partitions input space\n* Relationship between data density and map density\n\n### 6.4 Kohonen (2001)\n\nSect. **3.16 – Interpretation of the SOM Mapping**.\n\n---\n\n# 🟫 STAGE 7 — “Neighborhood Function Dynamics”\n\n### 7.1 Concept\n\nShow how the neighborhood radius shrinks over epochs.\n\n### 7.2 GT view\n\n`radiusTimeline`\n\n* A simple line chart\n\n### 7.3 Learning objective\n\nUnderstand:\n\n* Why global ordering happens early\n* Why fine‐tuning happens late\n\n### 7.4 Kohonen (2001)\n\nSect. **3.9 – Effect of the neighborhood function**\nSect. **3.8 – Learning rate factor**.\n\n---\n\n# 🟩 STAGE 8 — Batch SOM vs Incremental SOM\n\n### 8.1 Concept\n\nMost students don’t know the difference.\n\n### 8.2 GT views\n\n`batchVsIncrementalComparison`\nOverlay of maps produced by both variants.\n\n### 8.3 Kohonen (2001)\n\nSect. **3.6 – The Batch Map**.\n\n---\n\n# 🟦 STAGE 9 — FolkMemory Interpretation (optional but powerful)\n\n### 9.1 Concept\n\nRewrite SOM learning as:\n\n* distributed objects\n* trail-like radiating influence\n* promotion (winning neuron)\n* diffusion (neighborhood update)\n\nThis beautifully aligns with Ward Cunningham’s *Folk Memory* model.\n\n### 9.2 GT view\n\n`folkMemoryExplanation`\nA narrative view connecting SOM to distributed object propagation.\n\n---\n\n# Summary Table\n\n| Stage | View                                       | Concept                          | Kohonen        |\n| ----- | ------------------------------------------ | -------------------------------- | -------------- |\n| 0     | Weights                                    | raw codebook vectors             | 3.1–3.2        |\n| 1     | weightsAsPoints2D                          | points in input space            | 3.4.1          |\n| 2     | **Mapped Points in Input Space** (rename!) | scaled 2D projection             | 3.4.1          |\n| 3     | gridCoordinates2D                          | the naked map grid               | 3.1            |\n| 4     | mappedGridInInputSpace                     | SOM grid warped into input space | 3.4.1 + 3.4.2  |\n| 5     | uMatrix                                    | cluster visualization            | 3.15           |\n| 6     | bmuAssignmentPlot                          | mapping data onto map            | 3.16           |\n| 7     | radiusTimeline                             | dynamics of neighborhood         | 3.8–3.9        |\n| 8     | batchVsIncrementalComparison               | two training schemes             | 3.6            |\n| 9     | folkMemoryExplanation                      | conceptual metaphor              | FolkMemory.pdf |\n\n---\n\n# Next step:\n\nIf you want, I can generate:\n\n### ✔ A GT-ready **Lepiter curriculum skeleton**\n\n(lessons, pages, anchors, example code, navigation structure)\n\n### ✔ Full code for the next view:\n\n**`mappedGridInInputSpace`**\n\n### ✔ A GT Example suite (green tests)\n\nfor all stages 1–4\n\nJust tell me *which part to produce first*.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T00:04:46.461526+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T00:04:46.461526+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Full Curriculum Ladder: From Points to Maps"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "477bb419-3400-0e00-b650-c9d10ac40104"
+	}
+}

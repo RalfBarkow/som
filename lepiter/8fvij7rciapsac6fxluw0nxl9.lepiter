@@ -55,7 +55,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-16T22:59:40.287575+01:00"
+						"dateAndTimeString" : "2025-11-18T05:50:07.029504+01:00"
 					}
 				},
 				"editEmail" : {
@@ -66,17 +66,17 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-16T22:59:40.287575+01:00"
+						"dateAndTimeString" : "2025-11-18T05:50:07.029504+01:00"
 					}
 				},
 				"uid" : {
 					"__type" : "uid",
-					"uidString" : "jwSZFR8ADgC7Xm++Cw+Ujg=="
+					"uidString" : "BKRO7zgADgC4nYXNCsQBBA=="
 				},
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Right, good call to stop and reset. Let’s fix the **actual error** you’re seeing and keep things as close as possible to the *known-good* Plotter example (`sequoiaSearchResults`).\n\n---\n"
+				"string" : "Right, good call to stop and reset. Let’s fix the **actual error** you’re seeing and keep things as close as possible to the *known-good* Plotter example (`sequoiaSearchResults`).\n"
 			},
 			{
 				"__type" : "textSnippet",
