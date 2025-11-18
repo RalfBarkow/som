@@ -29,7 +29,7 @@
 					"__type" : "time",
 					"time" : {
 						"__type" : "dateAndTime",
-						"dateAndTimeString" : "2025-11-18T14:00:23.112109+01:00"
+						"dateAndTimeString" : "2025-11-18T14:08:32.432029+01:00"
 					}
 				},
 				"uid" : {
@@ -39,7 +39,7 @@
 				"paragraphStyle" : {
 					"__type" : "textStyle"
 				},
-				"string" : "Here’s a tiny **10×10 checkerboard weight** you can drop into a Lepiter snippet and run.\n\nIt will create a `SomReferenceVector` whose `weight` has 100 entries → `imageForm` will render a real 10×10 picture.\n\n```smalltalk\n\"Do it: create and inspect a fake 10x10 SomReferenceVector\"\n\n| weight ref |\nweight := (1 to: 100) collect: [ :i |\n    | row col |\n    row := (i - 1) // 10.   \"0–9\"\n    col := (i - 1) \\\\ 10.   \"0–9\"\n    ((row + col) even)\n        ifTrue: [ 0.0 ]      \"black\"\n        ifFalse: [ 1.0 ] ].  \"white\"\n\nref := SomReferenceVector\n    som: nil\n    index: 1\n    weight: weight\n    point2D: 0@0\n    gridPosition: 1@1.\n\nref inspect.\n```\n\nThen, in the inspector on `ref`, open the **Weight image** view – you should see a 10×10 black/white checkerboard (scaled up by your `gtImageOn:`).\n"
+				"string" : "Here’s a tiny **10×10 checkerboard weight** you can drop into a Lepiter snippet and run.\n\nIt will create a `SomReferenceVector` whose `weight` has 100 entries → `imageForm` will render a real 10×10 picture.\n\n```smalltalk\n\"Do it: create and inspect a fake 10x10 SomReferenceVector\"\n\n| weight ref |\nweight := (1 to: 100) collect: [ :i |\n    | row col |\n    row := (i - 1) // 10.   \"0–9\"\n    col := (i - 1) \\\\ 10.   \"0–9\"\n    ((row + col) even)\n        ifTrue: [ 0.0 ]      \"black\"\n        ifFalse: [ 1.0 ] ].  \"white\"\n\nref := SomReferenceVector\n    som: nil\n    index: 1\n    weight: weight\n    point2D: 0@0\n    gridPosition: 1@1.\n\nref inspect.\n```\n\nThen, in the inspector on `ref`, open the **Weight image** view – you should see a 10×10 black/white checkerboard (scaled up by your `gtImageOn:`). See {{gtMethod:SomReferenceVector>>#gtImageOn:}}\n"
 			}
 		]
 	},
