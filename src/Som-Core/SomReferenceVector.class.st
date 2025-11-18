@@ -43,14 +43,16 @@ SomReferenceVector >> gridPosition: aPoint [
 
 { #category : #'gt-views' }
 SomReferenceVector >> gtImageOn: aView [
-    <gtView>
-    ^ aView explicit
-        title: 'Weight image';
-        stencil: [ :v |
-            BlElement new
-                size: 200@200;
-                background: Color red;
-                yourself ]
+	<gtView>
+	| form |
+	form := self imageForm.
+	^ aView explicit
+		title: 'Weight image';
+		stencil: [ :v | 
+			| e |
+			e := form asElement.
+			e size: 200 @ 200.	"scale up so we can see it"
+			e ]
 ]
 
 { #category : #visualization }

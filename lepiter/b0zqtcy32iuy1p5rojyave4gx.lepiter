@@ -1,0 +1,76 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T14:00:20.842961+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-18T14:00:23.112109+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "IN6ByD8ADgC7tL67D+NEug=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Here’s a tiny **10×10 checkerboard weight** you can drop into a Lepiter snippet and run.\n\nIt will create a `SomReferenceVector` whose `weight` has 100 entries → `imageForm` will render a real 10×10 picture.\n\n```smalltalk\n\"Do it: create and inspect a fake 10x10 SomReferenceVector\"\n\n| weight ref |\nweight := (1 to: 100) collect: [ :i |\n    | row col |\n    row := (i - 1) // 10.   \"0–9\"\n    col := (i - 1) \\\\ 10.   \"0–9\"\n    ((row + col) even)\n        ifTrue: [ 0.0 ]      \"black\"\n        ifFalse: [ 1.0 ] ].  \"white\"\n\nref := SomReferenceVector\n    som: nil\n    index: 1\n    weight: weight\n    point2D: 0@0\n    gridPosition: 1@1.\n\nref inspect.\n```\n\nThen, in the inspector on `ref`, open the **Weight image** view – you should see a 10×10 black/white checkerboard (scaled up by your `gtImageOn:`).\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T14:00:36.760422+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-18T14:00:36.760422+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "10×10 checkerboard weight"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "21d581c8-3f00-0e00-bbb3-74f20fe344ba"
+	}
+}
