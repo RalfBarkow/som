@@ -1,0 +1,184 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:14:44.499816+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:19:19.162365+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "rYEMTncADgC/wAduBtvIew=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:SomNeuronMirror}} and {{gtMethod:KohonenSom>>#gtWeightMovementOn:}}, {{gtMethod:KohonenSom>>#gtWeightEvolutionOn:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:16:23.19208+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:16:23.19208+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "p2LuU3cADgCABmJGBtvIew=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Think of each SOM neuron as a little mirror that “holds” a view of the input space (its reference vector) *and* is framed by neighbouring mirrors (neighbour reference vectors). Let’s make that concrete in GT.\n\nBelow are **do-it chunks** you can paste into a Lepiter page and run. They give you:\n\n* a tiny domain object `SomNeuronMirror`\n* a helper on `KohonenSom` to get one\n* a `gtView` that visualizes **central neuron vs neighbours** – neuron-as-mirror\n\n---\n\n## 1️⃣ A tiny “neuron mirror” object\n\n```smalltalk\nObject\n    subclass: #SomNeuronMirror\n    instanceVariableNames: 'som index'\n    classVariableNames: ''\n    package: 'Som-Core'.\n```\n\n```smalltalk\nSomNeuronMirror class\n    compile: '\nsom: aSom index: anIndex\n    ^ self new\n        som: aSom;\n        index: anIndex;\n        yourself'\n    classified: 'instance creation'.\n```\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nsom\n    ^ som'\n    classified: 'accessing'.\n\nSomNeuronMirror\n    compile: '\nsom: aSom\n    som := aSom'\n    classified: 'accessing'.\n\nSomNeuronMirror\n    compile: '\nindex\n    ^ index'\n    classified: 'accessing'.\n\nSomNeuronMirror\n    compile: '\nindex: anIndex\n    index := anIndex'\n    classified: 'accessing'.\n```\n\n---\n\n## 2️⃣ Basic neuron / neighbour queries\n\nWe compute neighbours ourselves, assuming linear indices 1..(width*height), row-major.\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nweight\n    \"The reference / codebook vector for this neuron.\"\n    ^ som weights at: index'\n    classified: 'query'.\n```\n\n```smalltalk\nSomNeuronMirror\n    compile: '\ngridWidth\n    ^ som width'\n    classified: 'query'.\n\nSomNeuronMirror\n    compile: '\ngridHeight\n    ^ som height'\n    classified: 'query'.\n```\n\n```smalltalk\nSomNeuronMirror\n    compile: '\ngridRow\n    \"1-based row of this neuron in the SOM grid.\"\n    ^ ((self index - 1) // self gridWidth) + 1'\n    classified: 'query'.\n\nSomNeuronMirror\n    compile: '\ngridColumn\n    \"1-based column of this neuron in the SOM grid.\"\n    ^ ((self index - 1) \\\\ self gridWidth) + 1'\n    classified: 'query'.\n```\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nneighborIndices\n    \"4-neighbourhood: up, down, left, right – within bounds.\"\n    | row col candidates |\n    row := self gridRow.\n    col := self gridColumn.\n    candidates := {\n        (row - 1) @ col.\n        (row + 1) @ col.\n        row @ (col - 1).\n        row @ (col + 1) }.\n    ^ candidates\n        select: [ :p |\n            (p x between: 1 and: self gridHeight)\n                and: [ p y between: 1 and: self gridWidth ] ]\n        thenCollect: [ :p |\n            | r c |\n            r := p x.\n            c := p y.\n            ((r - 1) * self gridWidth) + c ]'\n    classified: 'query'.\n```\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nneighborsWithWeights\n    \"Answer an OrderedCollection of {index . weight} for neighbours.\"\n    ^ self neighborIndices collect: [ :i |\n        { i . (som weights at: i) } ]'\n    classified: 'query'.\n```\n\nFor distance in signal space:\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nsquaredDistanceFrom: v1 to: v2\n    \"Euclidean squared distance over collections of numbers.\"\n    ^ (v1 with: v2 collect: [ :a :b | (a - b) squared ]) sum'\n    classified: 'metrics'.\n\nSomNeuronMirror\n    compile: '\ndistanceToNeighborWeights\n    \"Answer {index . weight . squaredDistance} for each neighbour.\"\n    | w |\n    w := self weight.\n    ^ self neighborIndices collect: [ :i |\n        | nw d |\n        nw := som weights at: i.\n        d := self squaredDistanceFrom: w to: nw.\n        { i . nw . d } ]'\n    classified: 'metrics'.\n```\n\n---\n\n## 3️⃣ A GT view: “neuron as mirror”\n\nThis view:\n\n* shows the **central neuron** (index, grid pos, weight),\n* shows a small **table of neighbours** with distances in signal space,\n* and a very simple “bar chart” of the neuron’s own reference vector.\n\n```smalltalk\nSomNeuronMirror\n    compile: '\ngtMirrorOn: aView\n    <gtView>\n    ^ aView explicit\n        title: ''Neuron as mirror'';\n        stencil: [ :v | self buildMirrorElement ]'\n    classified: 'gt-views'.\n```\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nbuildMirrorElement\n    | root layout |\n    root := BlElement new.\n    layout := BlLinearLayout horizontal.\n    layout cellSpacing: 16.\n    root layout: layout.\n\n    root addChild: self buildInfoColumn.\n    root addChild: self buildNeighborsColumn.\n    root addChild: self buildWeightBarsColumn.\n\n    ^ root'\n    classified: 'gt-views'.\n```\n\n### Info column (who is this mirror?)\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nbuildInfoColumn\n    | col text |\n    col := BlElement new.\n    col layout: BlLinearLayout vertical.\n\n    text := String streamContents: [ :s |\n        s\n            nextPutAll: ''Neuron #''; nextPutAll: self index asString; cr;\n            nextPutAll: ''Grid position: (''; nextPutAll: self gridRow asString;\n            nextPutAll: '', ''; nextPutAll: self gridColumn asString; nextPutAll: '')'' ].\n\n    col addChild: (BrLabel new\n        text: text;\n        yourself).\n\n    ^ col'\n    classified: 'gt-views'.\n```\n\n### Neighbours column (participating mirrors)\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nbuildNeighborsColumn\n    | col header rows |\n    col := BlElement new.\n    col layout: BlLinearLayout vertical.\n\n    header := BrLabel new\n        text: ''Neighbours (index / Δ in signal space)'';\n        yourself.\n    col addChild: header.\n\n    rows := self distanceToNeighborWeights\n        collect: [ :triple |\n            | idx dist row |\n            idx := triple first.\n            dist := triple third.\n            row := BrLabel new\n                text: (''#'', idx asString, ''  d² = '', dist printString);\n                yourself.\n            row ].\n\n    rows do: [ :r | col addChild: r ].\n\n    ^ col'\n    classified: 'gt-views'.\n```\n\n### Weight bars column (mirror content)\n\nVery simple: each component of the reference vector as a vertical bar.\n\n```smalltalk\nSomNeuronMirror\n    compile: '\nbuildWeightBarsColumn\n    | col w maxAbs |\n    col := BlElement new.\n    col layout: BlLinearLayout vertical.\n\n    col addChild: (BrLabel new\n        text: ''Reference vector components'';\n        yourself).\n\n    w := self weight.\n    maxAbs := (w collect: [ :v | v abs ]) max max: 1e-6.\n\n    w withIndexDo: [ :value :idx |\n        | row label bar barWidth |\n        row := BlElement new.\n        row layout: BlLinearLayout horizontal.\n        row layout cellSpacing: 4.\n\n        label := BrLabel new\n            text: idx asString;\n            yourself.\n\n        barWidth := (200 * (value abs / maxAbs)) asFloat.\n\n        bar := BlElement new.\n        bar background: Color gray.\n        bar width: barWidth.\n        bar height: 8.\n\n        row addChild: label.\n        row addChild: bar.\n\n        col addChild: row ].\n\n    ^ col'\n    classified: 'gt-views'.\n```\n\n---\n\n## 4️⃣ Hook from `KohonenSom` to get a mirror\n\nSo you can easily ask your SOM for a neuron-as-mirror object:\n\n```smalltalk\nKohonenSom\n    compile: '\nneuronMirrorAt: anIndex\n    \"Answer a SomNeuronMirror for this SOM neuron.\"\n    ^ SomNeuronMirror som: self index: anIndex'\n    classified: 'inspector'.\n```\n\n---\n\n## 5️⃣ How to try it\n\nIn a Lepiter snippet:"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:16:37.15534+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:16:45.939144+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "O37DVHcADgCAC6MiBtvIew=="
+				},
+				"code" : "| som mirror |\nsom := KohonenSom new\n    initializeWithInputDimension: 2\n    width: 3\n    height: 3\n    iterations: 100.\n\n\"Train a little so weights aren’t all random/flat\"\nsom trainOn: {\n    #(0.0 0.0) asArray.\n    #(1.0 0.0) asArray.\n    #(0.0 1.0) asArray.\n    #(1.0 1.0) asArray }.\n\nmirror := som neuronMirrorAt: 5.  \"center neuron in 3x3 grid\"\nmirror inspect.  \"Open GT inspector and pick 'Neuron as mirror' view\""
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:13:59.924059+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:18:45.320796+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "p1VkS3cADgC/uuq4BtvIew=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "That gives you:\n\n* central neuron as a “mirror” of its local patch in input space (its reference vector),\n* its immediate neighbours and how similar/different their “reflections” are (distance in signal space),\n* a very literal picture of “Beteiligte Spiegelung”: this neuron’s content is defined **with** and **against** its neighbours.\n\nIf you’d like to push the Bråten analogy further, next step could be:\n\n* a **pair-mirror view** (two neuron mirrors side by side),\n* or a **“input vs reflection”** view where you feed an input vector and see how the neuron and its neighbours “respond” to it.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-21T08:14:37.941321+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-21T08:14:37.941321+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Think of each SOM neuron as a little mirror "
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "a051644b-7700-0e00-bfb9-1fb906dbc87b"
+	}
+}
