@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:26:32.793787+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:30:39.822496+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "+TZEeHcADgCy6BpHDgdroQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtMethod:SomNeuronMirror>>#gtNeuronAsMirrorOn:}}, {{gtMethod:SomNeuronMirror>>#gtNeuronAsMirrorOn:}} and {{gtMethod:SomNeuronMirror>>#gtMirrorOn:}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:26:12.975706+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:27:06.49773+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "ptAVd3cADgCy4mQvDgdroQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Right, that assertion comes from **`BlTextElement>>text:` now requiring a `Text`, not a `String`.\nIn the method I gave, we passed plain Strings → `AssertionFailure: A text must be an instance of Text`.\n\nLet’s switch to `BrLabel`, which happily takes Strings.\n\n### 1️⃣ Replace the view method\n\nRun this as a do-it in a workspace / Lepiter snippet:\n\n```smalltalk\nSomNeuronMirror\n    compile: '\ngtNeuronAsMirrorOn: aView\n    <gtView>\n    ^ aView explicit\n        title: ''Neuron as mirror'';\n        stencil: [ :v |\n            | root header weights neighbors |\n\n            root := BlElement new.\n            root layout: BlLinearLayout vertical.\n            root padding: (BlInsets all: 10).\n\n            header := BrLabel new\n                text: (''Neuron #{1} at {2}''\n                    format: { self index. self gridPosition });\n                yourself.\n\n            weights := BrLabel new\n                text: (''Weight vector: {1}''\n                    format: { self weightVector printString });\n                yourself.\n\n            neighbors := BrLabel new\n                text: (''Neighbor indices: {1}''\n                    format: { self neighborIndices printString });\n                yourself.\n\n            root addChild: header.\n            root addChild: weights.\n            root addChild: neighbors.\n\n            root ]'\n    classified: ''gt-views''.\n```\n\nNo `BlTextElement` anymore, only `BrLabel` with normal Strings.\n\n### 2️⃣ Re-open the inspector\n\nRe-run your snippet:\n\n```smalltalk\n| som mirror |\nsom := KohonenSom new\n    initializeWithInputDimension: 2\n    width: 3\n    height: 3\n    iterations: 100.\n\nsom trainOn: {\n    #(0.0 0.0) asArray.\n    #(1.0 0.0) asArray.\n    #(0.0 1.0) asArray.\n    #(1.0 1.0) asArray }.\n\nmirror := som neuronMirrorAt: 5.\nmirror.  \"Choose 'Neuron as mirror'\"\n```\n\nYou should now get a clean view with:\n\n* neuron index + grid position\n* its reference vector\n* neighbour indices\n\nIf you’d like, next step I can add a tiny 2D scatter into this same view so you see the neuron + neighbours in input space as well.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-21T08:26:30.797129+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-21T08:26:30.797129+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "SomNeuronMirror>>#gtNeuronAsMirrorOn:"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "ddcd1577-7700-0e00-b2e1-3f370e076ba1"
+	}
+}

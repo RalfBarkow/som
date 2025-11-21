@@ -273,6 +273,16 @@ KohonenSom >> neighborhoodInfluenceAtTime: t winnerIndex: winnerIndex neuronInde
     ^ Float e raisedTo: (dist2 negated / (2.0 * sigma2))
 ]
 
+{ #category : #inspecting }
+KohonenSom >> neuronMirrorAt: anIndex [
+    "Return a helper object to inspect the neuron (reference / codebook vector)
+     at the given linear index in the 2D lattice."
+    ^ SomNeuronMirror new
+        som: self;
+        index: anIndex;
+        yourself
+]
+
 { #category : #geometry }
 KohonenSom >> positionOfIndex: index [
     "Return the 2D grid coordinates (x @ y) for a 1-based linear index."

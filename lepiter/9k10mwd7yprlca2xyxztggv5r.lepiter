@@ -1,0 +1,113 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:21:01.60537+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:21:46.960606+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "Ka6GZHcADgCyWN7EDgdroQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Context: {{gtClass:SomNeuronMirror}} and {{gtClass:KohonenSom}}"
+			},
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:20:33.255835+01:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2025-11-21T08:24:27.142215+01:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2xrWYncADgCyUjnADgdroQ=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "Right now `KohonenSom` simply has no method `neuronMirrorAt:`, so your snippet creates a SOM, then sends a message that doesn’t exist → DNU.\n\nHere’s a **minimal “neuron-as-mirror inspector”** in GT:\n\n---\n\n### 1. Create a small helper object: `SomNeuronMirror`\n\n```smalltalk\n\"Define the helper class\"\n\nObject\n    subclass: #SomNeuronMirror\n    instanceVariableNames: 'som index'\n    classVariableNames: ''\n    package: 'Som-Core'.\n```\n\n```smalltalk\n\"Basic accessors\"\n\nSomNeuronMirror\n    compile: '\nsom\n    ^ som'\n    classified: 'accessing'.\n\nSomNeuronMirror\n    compile: '\nsom: aSom\n    som := aSom'\n    classified: 'accessing'.\n\nSomNeuronMirror\n    compile: '\nindex\n    ^ index'\n    classified: 'accessing'.\n\nSomNeuronMirror\n    compile: '\nindex: anInteger\n    index := anInteger'\n    classified: 'accessing'.\n```\n\n```smalltalk\n\"Derived information about this neuron\"\n\nSomNeuronMirror\n    compile: '\nweightVector\n    \"Reference / codebook vector of this neuron.\"\n    ^ som weights at: index'\n    classified: 'derived'.\n\nSomNeuronMirror\n    compile: '\ngridPosition\n    \"2D lattice position of this neuron (x@y).\"\n    ^ som positionOfIndex: index'\n    classified: 'derived'.\n\nSomNeuronMirror\n    compile: '\nneighborIndices\n    \"Indices of immediate grid neighbors (8-neighborhood) around this neuron.\"\n    | myPos |\n    myPos := self gridPosition.\n    ^ (1 to: som weights size) select: [ :i |\n        i ~= index and: [\n            | p d2 |\n            p := som positionOfIndex: i.\n            d2 := som gridDistanceSquaredFrom: myPos to: p.\n            d2 <= 2 ] ]'\n    classified: 'derived'.\n\nSomNeuronMirror\n    compile: '\nneighborWeightVectors\n    \"Weight vectors of the neighboring neurons.\"\n    ^ self neighborIndices collect: [ :i | som weights at: i ]'\n    classified: 'derived'.\n```\n\n---\n\n### 2. GT view: “Neuron as mirror”\n\n```smalltalk\n\"Simple textual / structural inspector for now\"\n\nSomNeuronMirror\n    compile: '\ngtNeuronAsMirrorOn: aView\n    <gtView>\n    ^ aView explicit\n        title: ''Neuron as mirror'';\n        stencil: [ :v |\n            | root header weightsText neighborsText |\n\n            root := BlElement new\n                layout: (BlLinearLayout vertical);\n                padding: (BlInsets all: 10);\n                background: Color white;\n                yourself.\n\n            header := BlTextElement new\n                text: (''Neuron #{1} at {2}''\n                    format: { self index. self gridPosition });\n                yourself.\n\n            weightsText := BlTextElement new\n                text: (''Weight vector: {1}''\n                    format: { self weightVector printString });\n                yourself.\n\n            neighborsText := BlTextElement new\n                text: (''Neighbor indices: {1}''\n                    format: { self neighborIndices printString });\n                yourself.\n\n            root addChild: header.\n            root addChild: weightsText.\n            root addChild: neighborsText.\n\n            root ]'\n    classified: 'gt-views'.\n```\n\n(If your GT image prefers different Bloc initialisers, you can tweak, but this follows the style already used in your SOM views.)\n\n---\n\n### 3. Hook it into `KohonenSom`\n\n```smalltalk\n\"Factory on the SOM to produce a neuron mirror\"\n\nKohonenSom\n    compile: '\nneuronMirrorAt: anIndex\n    \"Return a helper object to inspect the neuron (reference / codebook vector)\n     at the given linear index in the 2D lattice.\"\n    ^ SomNeuronMirror new\n        som: self;\n        index: anIndex;\n        yourself'\n    classified: 'inspecting'.\n```\n\n---\n\n### 4. How to use it\n\nYour original snippet should now work:\n\n```smalltalk\n| som mirror |\nsom := KohonenSom new\n    initializeWithInputDimension: 2\n    width: 3\n    height: 3\n    iterations: 100.\n\nsom trainOn: {\n    #(0.0 0.0) asArray.\n    #(1.0 0.0) asArray.\n    #(0.0 1.0) asArray.\n    #(1.0 1.0) asArray }.\n\nmirror := som neuronMirrorAt: 5.  \"center neuron in a 3x3 grid\"\nmirror.  \"Pick the 'Neuron as mirror' view\"\n```\n\nThis gives you a first Bråten-style “participatory mirror”:\n\n* **Mirror = reference (codebook) vector** of one neuron\n* **Context = its grid position + neighbours** in the SOM lattice\n\nOnce this feels right, we can enrich the view with:\n\n* a tiny scatter of all `weightsAsPoints2D` highlighting this neuron and its neighbours,\n* distances to a chosen input sample (to see how “strongly it resonates”),\n* or later: links into FolkMemory objects.\n"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-21T08:20:51.776417+01:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2025-11-21T08:20:51.776417+01:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Create a small helper object: SomNeuronMirror"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "bf15d662-7700-0e00-b251-88f30e076ba1"
+	}
+}

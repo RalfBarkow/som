@@ -137,6 +137,12 @@ SomNeuronMirror >> gridHeight [
     ^ som height
 ]
 
+{ #category : #derived }
+SomNeuronMirror >> gridPosition [
+    "2D lattice position of this neuron (x@y)."
+    ^ som positionOfIndex: index
+]
+
 { #category : #query }
 SomNeuronMirror >> gridRow [
     "1-based row of this neuron in the SOM grid."
@@ -156,36 +162,67 @@ SomNeuronMirror >> gtMirrorOn: aView [
         stencil: [ :v | self buildMirrorElement ]
 ]
 
+{ #category : #'gt-views' }
+SomNeuronMirror >> gtNeuronAsMirrorOn: aView [
+    <gtView>
+    ^ aView explicit
+        title: 'Neuron as mirror';
+        stencil: [ :v |
+            | root header weights neighbors |
+
+            root := BlElement new.
+            root layout: BlLinearLayout vertical.
+            root padding: (BlInsets all: 10).
+
+            header := BrLabel new
+                text: ('Neuron #{1} at {2}'
+                    format: { self index. self gridPosition });
+                yourself.
+
+            weights := BrLabel new
+                text: ('Weight vector: {1}'
+                    format: { self weightVector printString });
+                yourself.
+
+            neighbors := BrLabel new
+                text: ('Neighbor indices: {1}'
+                    format: { self neighborIndices printString });
+                yourself.
+
+            root addChild: header.
+            root addChild: weights.
+            root addChild: neighbors.
+
+            root ]
+]
+
 { #category : #accessing }
 SomNeuronMirror >> index [
     ^ index
 ]
 
 { #category : #accessing }
-SomNeuronMirror >> index: anIndex [
-    index := anIndex
+SomNeuronMirror >> index: anInteger [
+    index := anInteger
 ]
 
-{ #category : #query }
+{ #category : #derived }
 SomNeuronMirror >> neighborIndices [
-    "4-neighbourhood: up, down, left, right – within bounds."
-    | row col candidates |
-    row := self gridRow.
-    col := self gridColumn.
-    candidates := {
-        (row - 1) @ col.
-        (row + 1) @ col.
-        row @ (col - 1).
-        row @ (col + 1) }.
-    ^ candidates
-        select: [ :p |
-            (p x between: 1 and: self gridHeight)
-                and: [ p y between: 1 and: self gridWidth ] ]
-        thenCollect: [ :p |
-            | r c |
-            r := p x.
-            c := p y.
-            ((r - 1) * self gridWidth) + c ]
+    "Indices of immediate grid neighbors (8-neighborhood) around this neuron."
+    | myPos |
+    myPos := self gridPosition.
+    ^ (1 to: som weights size) select: [ :i |
+        i ~= index and: [
+            | p d2 |
+            p := som positionOfIndex: i.
+            d2 := som gridDistanceSquaredFrom: myPos to: p.
+            d2 <= 2 ] ]
+]
+
+{ #category : #derived }
+SomNeuronMirror >> neighborWeightVectors [
+    "Weight vectors of the neighboring neurons."
+    ^ self neighborIndices collect: [ :i | som weights at: i ]
 ]
 
 { #category : #query }
@@ -214,5 +251,11 @@ SomNeuronMirror >> squaredDistanceFrom: v1 to: v2 [
 { #category : #query }
 SomNeuronMirror >> weight [
     "The reference / codebook vector for this neuron."
+    ^ som weights at: index
+]
+
+{ #category : #derived }
+SomNeuronMirror >> weightVector [
+    "Reference / codebook vector of this neuron."
     ^ som weights at: index
 ]
